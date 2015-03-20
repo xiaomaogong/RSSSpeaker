@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5021AC121ABC6B4000877910 /* DYArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC111ABC6B4000877910 /* DYArticle.m */; };
+		5021AC151ABC6B4100877910 /* DYRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC141ABC6B4100877910 /* DYRSS.m */; };
 		DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF35A7F71ABB261D008BF6F0 /* Images.xcassets */; };
 		DF35A7FC1ABB2699008BF6F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FB1ABB2699008BF6F0 /* MainViewController.m */; };
 		DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5021AC101ABC6B4000877910 /* DYArticle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYArticle.h; sourceTree = "<group>"; };
+		5021AC111ABC6B4000877910 /* DYArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYArticle.m; sourceTree = "<group>"; };
+		5021AC131ABC6B4100877910 /* DYRSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRSS.h; sourceTree = "<group>"; };
+		5021AC141ABC6B4100877910 /* DYRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSS.m; sourceTree = "<group>"; };
 		DF35A7F71ABB261D008BF6F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF35A7FA1ABB2699008BF6F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		DF35A7FB1ABB2699008BF6F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -109,6 +115,11 @@
 		DF35A8041ABB27BA008BF6F0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DF979BC51ABB258500DAD4AE /* RSS____.xcdatamodeld */,
+				5021AC131ABC6B4100877910 /* DYRSS.h */,
+				5021AC141ABC6B4100877910 /* DYRSS.m */,
+				5021AC101ABC6B4000877910 /* DYArticle.h */,
+				5021AC111ABC6B4000877910 /* DYArticle.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -155,7 +166,6 @@
 				DF590AD11ABB2AF6006E6E35 /* Main.storyboard */,
 				DF35A7F71ABB261D008BF6F0 /* Images.xcassets */,
 				DF979BD01ABB258500DAD4AE /* LaunchScreen.xib */,
-				DF979BC51ABB258500DAD4AE /* RSS____.xcdatamodeld */,
 				DF979BBE1ABB258500DAD4AE /* Supporting Files */,
 			);
 			path = "RSS语音助手";
@@ -290,6 +300,8 @@
 			files = (
 				DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */,
 				DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */,
+				5021AC121ABC6B4000877910 /* DYArticle.m in Sources */,
+				5021AC151ABC6B4100877910 /* DYRSS.m in Sources */,
 				DF979BC11ABB258500DAD4AE /* main.m in Sources */,
 				DF979BCA1ABB258500DAD4AE /* ViewController.m in Sources */,
 				DF35A7FC1ABB2699008BF6F0 /* MainViewController.m in Sources */,
