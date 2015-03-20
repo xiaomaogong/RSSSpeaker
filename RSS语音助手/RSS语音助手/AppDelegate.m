@@ -1,7 +1,7 @@
 //
 //  AppDelegate.m
 //  RSS语音助手
-//
+///Users/gongsha/Downloads/RSSRead-master/RSSSpeaker/RSS语音助手/Podfile
 //  Created by 龚莎 on 15/3/19.
 //  Copyright (c) 2015年 iosnerds. All rights reserved.
 //
