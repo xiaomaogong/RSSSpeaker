@@ -155,10 +155,10 @@
     }
     cell->delegate = delegate;
     [cell initImages];
-    cell.identifier = article.identifier;
+    cell.identifier = article.url;
     [cell.songTitle setTitle:article.title forState:UIControlStateNormal];
     [cell setPlayStatus:NO];
-    [cell setFavorStatus:[article.addToFavor intValue] > 0 ? YES : NO];
+//    [cell setFavorStatus:[article.addToFavor intValue] > 0 ? YES : NO];
     if (NO == article.isReaded) {
         [cell setRedDot];
     } else {

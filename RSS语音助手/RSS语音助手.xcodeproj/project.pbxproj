@@ -9,14 +9,13 @@
 /* Begin PBXBuildFile section */
 		5021AC121ABC6B4000877910 /* DYArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC111ABC6B4000877910 /* DYArticle.m */; };
 		5021AC151ABC6B4100877910 /* DYRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC141ABC6B4100877910 /* DYRSS.m */; };
+		5021AC1B1ABC78BC00877910 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */; };
 		DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF35A7F71ABB261D008BF6F0 /* Images.xcassets */; };
-		DF35A7FC1ABB2699008BF6F0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FB1ABB2699008BF6F0 /* MainViewController.m */; };
 		DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */; };
 		DF35A8031ABB273A008BF6F0 /* DYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A8021ABB273A008BF6F0 /* DYSettingViewController.m */; };
 		DF35A80A1ABB2847008BF6F0 /* DYPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A8071ABB2847008BF6F0 /* DYPlayer.m */; };
 		DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A8091ABB2847008BF6F0 /* DYSpeeker.m */; };
 		DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */; };
-		DF35A8101ABB2915008BF6F0 /* Library in Resources */ = {isa = PBXBuildFile; fileRef = DF35A80F1ABB2915008BF6F0 /* Library */; };
 		DF590AD31ABB2AF6006E6E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF590AD11ABB2AF6006E6E35 /* Main.storyboard */; };
 		DF979BC11ABB258500DAD4AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC01ABB258500DAD4AE /* main.m */; };
 		DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC31ABB258500DAD4AE /* AppDelegate.m */; };
@@ -41,9 +40,9 @@
 		5021AC111ABC6B4000877910 /* DYArticle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYArticle.m; sourceTree = "<group>"; };
 		5021AC131ABC6B4100877910 /* DYRSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRSS.h; sourceTree = "<group>"; };
 		5021AC141ABC6B4100877910 /* DYRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSS.m; sourceTree = "<group>"; };
+		5021AC191ABC78BC00877910 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		DF35A7F71ABB261D008BF6F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		DF35A7FA1ABB2699008BF6F0 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		DF35A7FB1ABB2699008BF6F0 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		DF35A7FE1ABB272F008BF6F0 /* DYSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSongTableViewCell.h; sourceTree = "<group>"; };
 		DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYSongTableViewCell.m; sourceTree = "<group>"; };
 		DF35A8011ABB273A008BF6F0 /* DYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSettingViewController.h; sourceTree = "<group>"; };
@@ -54,7 +53,6 @@
 		DF35A8091ABB2847008BF6F0 /* DYSpeeker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYSpeeker.m; sourceTree = "<group>"; };
 		DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
-		DF35A80F1ABB2915008BF6F0 /* Library */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Library; sourceTree = "<group>"; };
 		DF590AD21ABB2AF6006E6E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DF979BBB1ABB258500DAD4AE /* RSS语音助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS语音助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF979BBF1ABB258500DAD4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -91,12 +89,12 @@
 		DF35A7F91ABB2665008BF6F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5021AC191ABC78BC00877910 /* SWRevealViewController.h */,
+				5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */,
 				DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */,
 				DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */,
 				DF35A8011ABB273A008BF6F0 /* DYSettingViewController.h */,
 				DF35A8021ABB273A008BF6F0 /* DYSettingViewController.m */,
-				DF35A7FA1ABB2699008BF6F0 /* MainViewController.h */,
-				DF35A7FB1ABB2699008BF6F0 /* MainViewController.m */,
 				DF979BC81ABB258500DAD4AE /* ViewController.h */,
 				DF979BC91ABB258500DAD4AE /* ViewController.m */,
 			);
@@ -156,7 +154,6 @@
 		DF979BBD1ABB258500DAD4AE /* RSS语音助手 */ = {
 			isa = PBXGroup;
 			children = (
-				DF35A80F1ABB2915008BF6F0 /* Library */,
 				DF35A8051ABB2818008BF6F0 /* Player */,
 				DF35A8041ABB27BA008BF6F0 /* Models */,
 				DF35A7FD1ABB2715008BF6F0 /* Views */,
@@ -277,7 +274,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF35A8101ABB2915008BF6F0 /* Library in Resources */,
 				DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */,
 				DF979BD21ABB258500DAD4AE /* LaunchScreen.xib in Resources */,
 				DF590AD31ABB2AF6006E6E35 /* Main.storyboard in Resources */,
@@ -304,12 +300,12 @@
 				5021AC151ABC6B4100877910 /* DYRSS.m in Sources */,
 				DF979BC11ABB258500DAD4AE /* main.m in Sources */,
 				DF979BCA1ABB258500DAD4AE /* ViewController.m in Sources */,
-				DF35A7FC1ABB2699008BF6F0 /* MainViewController.m in Sources */,
 				DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */,
 				DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */,
 				DF35A8031ABB273A008BF6F0 /* DYSettingViewController.m in Sources */,
 				DF979BC71ABB258500DAD4AE /* RSS____.xcdatamodeld in Sources */,
 				DF35A80A1ABB2847008BF6F0 /* DYPlayer.m in Sources */,
+				5021AC1B1ABC78BC00877910 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
