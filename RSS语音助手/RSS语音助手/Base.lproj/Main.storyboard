@@ -35,7 +35,7 @@
                                     <action selector="playNextSong:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xrD-mv-rEP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0X-si-tTe">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H0X-si-tTe">
                                 <rect key="frame" x="548" y="72" width="36" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <state key="normal" title="导出">
@@ -135,7 +135,7 @@
                                     <action selector="playSong:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="vAy-5Q-mjT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyw-b6-RTn">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jyw-b6-RTn">
                                 <rect key="frame" x="16" y="64" width="32" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="OkH-Td-3m6"/>
@@ -244,11 +244,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fj6-qf-mUb">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="rssCellIdentifier" id="fj6-qf-mUb" customClass="DYMyRSSTableViewCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fj6-qf-mUb" id="831-ib-sjV">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RssTitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jph-Fp-D2x">
+                                            <rect key="frame" x="8" y="11.5" width="584" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="jph-Fp-D2x" firstAttribute="leading" secondItem="831-ib-sjV" secondAttribute="leadingMargin" id="28U-mj-qZH"/>
+                                        <constraint firstAttribute="centerY" secondItem="jph-Fp-D2x" secondAttribute="centerY" id="Va8-ge-ZS2"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="jph-Fp-D2x" secondAttribute="trailing" id="lnr-F9-0du"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lbTitle" destination="jph-Fp-D2x" id="Vr2-Ih-vON"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -256,9 +272,16 @@
                             <outlet property="delegate" destination="Pgg-FF-PBg" id="2zn-nE-i9H"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="nT5-sG-Rt0">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="Lzf-kw-g11"/>
+                        <barButtonItem key="rightBarButtonItem" image="add" id="gV5-n4-6nb">
+                            <connections>
+                                <action selector="addNewRss:" destination="Pgg-FF-PBg" id="n0P-kF-skJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="sidebarButton" destination="Lzf-kw-g11" id="oSw-jr-NSs"/>
                     </connections>
@@ -292,7 +315,6 @@
         <!--Navigation Controller-->
         <scene sceneID="O72-kv-9OE">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jKI-6i-wyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="ED9-vG-9vQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9o4-gf-If1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -302,6 +324,7 @@
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="iFX-b2-B8A"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jKI-6i-wyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1174" y="495"/>
         </scene>

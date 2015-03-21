@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DYMyRSSViewController : UITableViewController
+@interface DYMyRSSViewController : UITableViewController<UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+- (IBAction)addNewRss:(id)sender;
+
 @end
