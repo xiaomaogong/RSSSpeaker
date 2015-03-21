@@ -10,6 +10,12 @@
 		5021AC121ABC6B4000877910 /* DYArticle.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC111ABC6B4000877910 /* DYArticle.m */; };
 		5021AC151ABC6B4100877910 /* DYRSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC141ABC6B4100877910 /* DYRSS.m */; };
 		5021AC1B1ABC78BC00877910 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */; };
+<<<<<<< HEAD
+=======
+		5021AC1E1ABC963B00877910 /* DYAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021AC1D1ABC963B00877910 /* DYAboutViewController.m */; };
+		508E25721ABD5CE6009051FB /* DYMyRSSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25711ABD5CE6009051FB /* DYMyRSSViewController.m */; };
+		508E25751ABD5D19009051FB /* DYMyFavorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25741ABD5D19009051FB /* DYMyFavorViewController.m */; };
+>>>>>>> origin/master
 		BE03834499D04B026AF4E17B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD34B965AAD52B616EE900 /* libPods.a */; };
 		DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF35A7F71ABB261D008BF6F0 /* Images.xcassets */; };
 		DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */; };
@@ -18,12 +24,15 @@
 		DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A8091ABB2847008BF6F0 /* DYSpeeker.m */; };
 		DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */; };
 		DF590AD31ABB2AF6006E6E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF590AD11ABB2AF6006E6E35 /* Main.storyboard */; };
+<<<<<<< HEAD
 		DF8644991ABC7D56004A8BB7 /* DYFeedParserWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644941ABC7D56004A8BB7 /* DYFeedParserWrapper.m */; };
 		DF86449A1ABC7D56004A8BB7 /* DYFeedUpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644961ABC7D56004A8BB7 /* DYFeedUpdateController.m */; };
 		DF86449B1ABC7D56004A8BB7 /* DYRSSFetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644981ABC7D56004A8BB7 /* DYRSSFetchOperation.m */; };
 		DF86449E1ABC8C36004A8BB7 /* DYGetFetchedRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF86449D1ABC8C36004A8BB7 /* DYGetFetchedRecordsModel.m */; };
 		DF8644A11ABCA6AD004A8BB7 /* NSManagedObjectContext+PrivateContext.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644A01ABCA6AD004A8BB7 /* NSManagedObjectContext+PrivateContext.m */; };
 		DF8644A61ABD6536004A8BB7 /* DYRSSDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644A51ABD6536004A8BB7 /* DYRSSDAL.m */; };
+=======
+>>>>>>> origin/master
 		DF979BC11ABB258500DAD4AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC01ABB258500DAD4AE /* main.m */; };
 		DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC31ABB258500DAD4AE /* AppDelegate.m */; };
 		DF979BC71ABB258500DAD4AE /* RSS____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC51ABB258500DAD4AE /* RSS____.xcdatamodeld */; };
@@ -51,6 +60,15 @@
 		5021AC141ABC6B4100877910 /* DYRSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSS.m; sourceTree = "<group>"; };
 		5021AC191ABC78BC00877910 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
+		5021AC1C1ABC963B00877910 /* DYAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYAboutViewController.h; sourceTree = "<group>"; };
+		5021AC1D1ABC963B00877910 /* DYAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYAboutViewController.m; sourceTree = "<group>"; };
+		508E25701ABD5CE6009051FB /* DYMyRSSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYMyRSSViewController.h; sourceTree = "<group>"; };
+		508E25711ABD5CE6009051FB /* DYMyRSSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYMyRSSViewController.m; sourceTree = "<group>"; };
+		508E25731ABD5D19009051FB /* DYMyFavorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYMyFavorViewController.h; sourceTree = "<group>"; };
+		508E25741ABD5D19009051FB /* DYMyFavorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYMyFavorViewController.m; sourceTree = "<group>"; };
+>>>>>>> origin/master
 		53B7AD06549F05168EF2AE10 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DF35A7F71ABB261D008BF6F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF35A7FE1ABB272F008BF6F0 /* DYSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSongTableViewCell.h; sourceTree = "<group>"; };
@@ -64,6 +82,7 @@
 		DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		DF590AD21ABB2AF6006E6E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+<<<<<<< HEAD
 		DF8644931ABC7D56004A8BB7 /* DYFeedParserWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFeedParserWrapper.h; sourceTree = "<group>"; };
 		DF8644941ABC7D56004A8BB7 /* DYFeedParserWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYFeedParserWrapper.m; sourceTree = "<group>"; };
 		DF8644951ABC7D56004A8BB7 /* DYFeedUpdateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFeedUpdateController.h; sourceTree = "<group>"; };
@@ -77,6 +96,8 @@
 		DF8644A21ABCA946004A8BB7 /* DYRSS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DYRSS-Prefix.pch"; sourceTree = "<group>"; };
 		DF8644A41ABD6536004A8BB7 /* DYRSSDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRSSDAL.h; sourceTree = "<group>"; };
 		DF8644A51ABD6536004A8BB7 /* DYRSSDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSSDAL.m; sourceTree = "<group>"; };
+=======
+>>>>>>> origin/master
 		DF979BBB1ABB258500DAD4AE /* RSS语音助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS语音助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF979BBF1ABB258500DAD4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF979BC01ABB258500DAD4AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,6 +151,15 @@
 				DF35A8021ABB273A008BF6F0 /* DYSettingViewController.m */,
 				DF979BC81ABB258500DAD4AE /* ViewController.h */,
 				DF979BC91ABB258500DAD4AE /* ViewController.m */,
+<<<<<<< HEAD
+=======
+				5021AC1C1ABC963B00877910 /* DYAboutViewController.h */,
+				5021AC1D1ABC963B00877910 /* DYAboutViewController.m */,
+				508E25701ABD5CE6009051FB /* DYMyRSSViewController.h */,
+				508E25711ABD5CE6009051FB /* DYMyRSSViewController.m */,
+				508E25731ABD5D19009051FB /* DYMyFavorViewController.h */,
+				508E25741ABD5D19009051FB /* DYMyFavorViewController.m */,
+>>>>>>> origin/master
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -169,6 +199,7 @@
 		DF6082CC1ABC7BF300ABB421 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				DF86449C1ABC8C36004A8BB7 /* DYGetFetchedRecordsModel.h */,
 				DF86449D1ABC8C36004A8BB7 /* DYGetFetchedRecordsModel.m */,
 				DF8644931ABC7D56004A8BB7 /* DYFeedParserWrapper.h */,
@@ -179,10 +210,13 @@
 				DF8644981ABC7D56004A8BB7 /* DYRSSFetchOperation.m */,
 				DF86449F1ABCA6AD004A8BB7 /* NSManagedObjectContext+PrivateContext.h */,
 				DF8644A01ABCA6AD004A8BB7 /* NSManagedObjectContext+PrivateContext.m */,
+=======
+>>>>>>> origin/master
 			);
 			name = Data;
 			sourceTree = "<group>";
 		};
+<<<<<<< HEAD
 		DF8644A31ABD64FF004A8BB7 /* DAL */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +226,8 @@
 			name = DAL;
 			sourceTree = "<group>";
 		};
+=======
+>>>>>>> origin/master
 		DF979BB21ABB258500DAD4AE = {
 			isa = PBXGroup;
 			children = (
@@ -215,7 +251,10 @@
 		DF979BBD1ABB258500DAD4AE /* RSS语音助手 */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
 				DF8644A31ABD64FF004A8BB7 /* DAL */,
+=======
+>>>>>>> origin/master
 				DF6082CC1ABC7BF300ABB421 /* Data */,
 				DF35A8051ABB2818008BF6F0 /* Player */,
 				DF35A8041ABB27BA008BF6F0 /* Models */,
@@ -223,7 +262,10 @@
 				DF35A7F91ABB2665008BF6F0 /* ViewControllers */,
 				DF979BC21ABB258500DAD4AE /* AppDelegate.h */,
 				DF979BC31ABB258500DAD4AE /* AppDelegate.m */,
+<<<<<<< HEAD
 				DF8644A21ABCA946004A8BB7 /* DYRSS-Prefix.pch */,
+=======
+>>>>>>> origin/master
 				DF590AD11ABB2AF6006E6E35 /* Main.storyboard */,
 				DF35A7F71ABB261D008BF6F0 /* Images.xcassets */,
 				DF979BD01ABB258500DAD4AE /* LaunchScreen.xib */,
@@ -402,11 +444,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */,
+<<<<<<< HEAD
 				DF8644A61ABD6536004A8BB7 /* DYRSSDAL.m in Sources */,
+=======
+>>>>>>> origin/master
 				DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */,
 				5021AC121ABC6B4000877910 /* DYArticle.m in Sources */,
 				5021AC151ABC6B4100877910 /* DYRSS.m in Sources */,
 				DF979BC11ABB258500DAD4AE /* main.m in Sources */,
+<<<<<<< HEAD
 				DF979BCA1ABB258500DAD4AE /* ViewController.m in Sources */,
 				DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */,
 				DF8644991ABC7D56004A8BB7 /* DYFeedParserWrapper.m in Sources */,
@@ -416,6 +462,15 @@
 				DF86449E1ABC8C36004A8BB7 /* DYGetFetchedRecordsModel.m in Sources */,
 				DF8644A11ABCA6AD004A8BB7 /* NSManagedObjectContext+PrivateContext.m in Sources */,
 				DF86449A1ABC7D56004A8BB7 /* DYFeedUpdateController.m in Sources */,
+=======
+				5021AC1E1ABC963B00877910 /* DYAboutViewController.m in Sources */,
+				DF979BCA1ABB258500DAD4AE /* ViewController.m in Sources */,
+				DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */,
+				508E25751ABD5D19009051FB /* DYMyFavorViewController.m in Sources */,
+				DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */,
+				DF35A8031ABB273A008BF6F0 /* DYSettingViewController.m in Sources */,
+				508E25721ABD5CE6009051FB /* DYMyRSSViewController.m in Sources */,
+>>>>>>> origin/master
 				DF979BC71ABB258500DAD4AE /* RSS____.xcdatamodeld in Sources */,
 				DF35A80A1ABB2847008BF6F0 /* DYPlayer.m in Sources */,
 				5021AC1B1ABC78BC00877910 /* SWRevealViewController.m in Sources */,
@@ -541,8 +596,11 @@
 			baseConfigurationReference = 53B7AD06549F05168EF2AE10 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+<<<<<<< HEAD
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSS语音助手/DYRSS-Prefix.pch";
+=======
+>>>>>>> origin/master
 				INFOPLIST_FILE = "RSS语音助手/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -554,8 +612,11 @@
 			baseConfigurationReference = 0C34DA194517E18D3366DB13 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+<<<<<<< HEAD
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSS语音助手/DYRSS-Prefix.pch";
+=======
+>>>>>>> origin/master
 				INFOPLIST_FILE = "RSS语音助手/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -570,8 +631,11 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+<<<<<<< HEAD
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSS语音助手/DYRSS-Prefix.pch";
+=======
+>>>>>>> origin/master
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -591,8 +655,11 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+<<<<<<< HEAD
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RSS语音助手/DYRSS-Prefix.pch";
+=======
+>>>>>>> origin/master
 				INFOPLIST_FILE = "RSS语音助手Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

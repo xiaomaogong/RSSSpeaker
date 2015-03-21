@@ -1,24 +1,24 @@
 //
-//  DYSettingViewController.m
-//  订阅号助手
+//  DYAboutViewController.m
+//  RSS语音助手
 //
-//  Created by 龚莎 on 15/1/30.
-//  Copyright (c) 2015年 GSClock. All rights reserved.
+//  Created by ss on 15/3/21.
+//  Copyright (c) 2015年 iosnerds. All rights reserved.
 //
 
-#import "DYSettingViewController.h"
+#import "DYAboutViewController.h"
 #import "SWRevealViewController.h"
 
-@interface DYSettingViewController ()
+@interface DYAboutViewController ()
 
 @end
 
-@implementation DYSettingViewController
+@implementation DYAboutViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-  
+    
     [self setupSWSegues];
 }
 

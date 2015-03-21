@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
 
-    menuItems = @[@"title", @"主页", @"设置"];
+    menuItems = @[@"title", @"主页",@"我的RSS",@"我的收藏", @"设置",@"关于"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -66,7 +66,7 @@
     // Set the title of navigation bar by using the menu items
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-    destViewController.title = [[menuItems objectAtIndex:indexPath.row] capitalizedString];
+    destViewController.title = [menuItems objectAtIndex:indexPath.row];
     
     // Set the photo if it navigates to the PhotoView
     if ([segue.identifier isEqualToString:@"showSetting"]) {
