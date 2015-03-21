@@ -1,46 +1,26 @@
-//
-//  SMRSSFetchOperation.m
-//  RSSRead
-//
-//  Created by John Zhang on 5/30/14.
-//  Copyright (c) 2014 starming. All rights reserved.
-//
-
-#import "SMRSSFetchOperation.h"
+#import "DYRSSFetchOperation.h"
 #import <MWFeedParser/MWFeedParser.h>
-//#import "SMRSSModel.h"
-
-//#ifndef PARSER_LOG
-//#define PARSER_LOG 0
-//#endif
 
 #ifndef DEBUG
 #undef PARSER_LOG
 #endif
 
-@interface SMRSSFetchOperation()<MWFeedParserDelegate>
+@interface DYRSSFetchOperation()<MWFeedParserDelegate>
 
 @property (assign, nonatomic) NSTimeInterval timeout;
-
 @property (copy, nonatomic) NSURL *url;
-
 @property (copy, nonatomic) void (^completionHandler)(NSArray *items);
-
 @property (assign) BOOL isTimeout;
-
 @property (assign) BOOL fetchFinished;
-
 @property (nonatomic, retain)MWFeedParser *feedParser;
-
 @property (nonatomic, retain) NSMutableArray *fetchedFeeds;
-
 @property (nonatomic, retain) NSTimer *timer;
-
 @property (copy, nonatomic) void (^tryCompletionHandler)(MWFeedInfo *feedInfo);
 
 @end
 
-@implementation SMRSSFetchOperation
+@implementation DYRSSFetchOperation
+
 - (id) initWithURL:(NSURL *)url timeout:(NSTimeInterval)timeout completionHandler:(void (^)(NSArray *items))completionHandler
 {
     if(self = [super init]){
@@ -54,13 +34,9 @@
         _feedParser.connectionType = ConnectionTypeSynchronously;//采用同步方式发送请求
        
         _isTimeout = NO;
-        
         _fetchFinished = NO;
-        
         _url = url;
-        
         _timeout = timeout;
-        
         _timer = [NSTimer timerWithTimeInterval:timeout target:self selector:@selector(parserTimeout) userInfo:nil repeats:NO];
     }
     return self;
@@ -157,17 +133,12 @@
 }
 
 #pragma mark - MWFeedParser Delegate
-//-(void)feedParserDidStart:(MWFeedParser *)parser {
-//
-//}
 
 -(void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
     if(self.tryCompletionHandler){
         self.tryCompletionHandler(info);
         [self willChangeValueForKey:@"isFinished"];
-        
         _fetchFinished = YES;
-        
         [self didChangeValueForKey:@"isFinished"];
     }
 }
@@ -177,7 +148,6 @@
 }
 
 -(void)feedParserDidFinish:(MWFeedParser *)parser {
-
     if(_isTimeout){
         return;
     }
@@ -194,7 +164,6 @@
         if(self.tryCompletionHandler){
             self.tryCompletionHandler(nil);
         }
-        
     });
     
 #ifdef PARSER_LOG
@@ -203,4 +172,5 @@
    
     [self didChangeValueForKey:@"isFinished"];
 }
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DYGetFetchedRecordsModel.h"
 
 @interface AppDelegate ()
 
@@ -107,6 +108,29 @@
     _managedObjectContext = [[NSManagedObjectContext alloc] init];
     [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     return _managedObjectContext;
+}
+
+// Core Data
+- (NSArray *)fetchRecordsWithPrivateContext:(DYGetFetchedRecordsModel *)getModel privateContext:(NSManagedObjectContext *)privateContext {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:getModel.entityName inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    if (getModel.sortName) {
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:getModel.sortName ascending:NO];
+        NSArray *sortDescriptors = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
+        [fetchRequest setSortDescriptors:sortDescriptors];
+    }
+    if (getModel.limit) {
+        [fetchRequest setFetchLimit:getModel.limit];
+        [fetchRequest setFetchOffset:getModel.offset];
+    }
+    if (getModel.predicate) {
+        [fetchRequest setPredicate:getModel.predicate];
+    }
+    
+    NSError *error;
+    NSArray *fetchedRecords = [privateContext executeFetchRequest:fetchRequest error:&error];
+    return fetchedRecords;
 }
 
 #pragma mark - Core Data Saving support

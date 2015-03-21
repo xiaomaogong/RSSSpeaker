@@ -1,18 +1,8 @@
-//
-//  SMRSSFetchOperation.h
-//  RSSRead
-//
-//  Created by John Zhang on 5/30/14.
-//  Copyright (c) 2014 starming. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 
 @class MWFeedInfo;
 
-@interface SMRSSFetchOperation : NSOperation
-
-
+@interface DYRSSFetchOperation : NSOperation
 
 - (id) initWithURL:(NSURL *)url timeout:(NSTimeInterval)timeout completionHandler:(void (^)(NSArray *items))completionHandler;
 

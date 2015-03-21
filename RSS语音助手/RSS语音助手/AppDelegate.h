@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
+@class DYGetFetchedRecordsModel;
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
@@ -19,7 +21,7 @@
 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
-
+- (NSArray *)fetchRecordsWithPrivateContext:(DYGetFetchedRecordsModel *)getModel privateContext:(NSManagedObjectContext *)privateContext;
 
 @end
 
