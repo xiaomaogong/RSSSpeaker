@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DYSettingViewController : UIViewController
+@interface DYSettingViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @end
