@@ -4,6 +4,7 @@
 #import "NSManagedObjectContext+PrivateContext.h"
 #import "DYRSS.h"
 #import "DYRSSDAL.h"
+#import "DYUtil.h"
 #import "DYPreferences.h"
 
 @interface DYFeedUpdateController() <DYRSSDALDelegate>
@@ -49,7 +50,7 @@ static DYFeedUpdateController *sharedInstance;
 - (void)doUpdateJob{
     @synchronized(_sourceList) {
     
-    NSManagedObjectContext *privateContext = [NSManagedObjectContext generatePrivateContextWithParent:APP_DELEGATE.managedObjectContext];
+        NSManagedObjectContext *privateContext = [DYUtil getPrivateManagedObjectContext];
         
     if(!_sourceList) {
         _sourceList = nil;
@@ -64,7 +65,7 @@ static DYFeedUpdateController *sharedInstance;
         
         if(-[lastUpdateDate timeIntervalSinceNow]>intUpdate){
             [DYFeedParserWrapper parseUrl:[NSURL URLWithString:rss.sourceUrl] timeout:10 completion:^(NSArray *items) {
-                NSManagedObjectContext *pmoc = [NSManagedObjectContext generatePrivateContextWithParent:APP_DELEGATE.managedObjectContext];
+                NSManagedObjectContext *pmoc = [DYUtil getPrivateManagedObjectContext];
                 DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
                 rssDal.delegate = (id)self;
                 [rssDal insertArticlesWithFeedItems:items withFeedUrlStr:rss.sourceUrl withContext:pmoc];

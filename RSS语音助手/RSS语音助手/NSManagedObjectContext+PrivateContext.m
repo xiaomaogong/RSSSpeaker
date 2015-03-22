@@ -10,9 +10,9 @@
 
 @implementation NSManagedObjectContext (PrivateContext)
 
-+ (NSManagedObjectContext *)generatePrivateContextWithParent:(NSManagedObjectContext *)parentContext {
+- (NSManagedObjectContext *)generatePrivateContext{
     NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    privateContext.parentContext = parentContext;
+    privateContext.parentContext = self;
     return privateContext;
 }
 
