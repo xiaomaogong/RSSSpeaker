@@ -5,6 +5,7 @@
 #import "DYRSS.h"
 #import "DYRSSDAL.h"
 #import "DYUtil.h"
+#import "DYPreferences.h"
 
 @interface DYFeedUpdateController() <DYRSSDALDelegate>
 
@@ -24,7 +25,7 @@ static DYFeedUpdateController *sharedInstance;
 - (instancetype)init{
     if(self = [super init]){
         //默认每30秒检查一次更新
-        _updateCheckTimeInterval = 30;
+        _updateCheckTimeInterval = [[DYPreferences sharedInstance] updateInterval];
         
         _dispatchQueue = dispatch_queue_create("SM parser queue", DISPATCH_QUEUE_SERIAL);
         _dispatchSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, _dispatchQueue);
@@ -55,17 +56,12 @@ static DYFeedUpdateController *sharedInstance;
         _sourceList = nil;
         DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel alloc] init];
         getModel.entityName = @"DYRSS";
-        getModel.sortName = @"total";
-        /// TODO2:
         _sourceList = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:privateContext];
     }
         
     [_sourceList enumerateObjectsUsingBlock:^(DYRSS *rss, NSUInteger idx, BOOL *stop) {
-        /// TODO:
         NSDate *lastUpdateDate = rss.lastUpdateTime;
-        //NSNumber *sourceUpdatInterval = subscribe.updateTimeInterval;
-        NSNumber *sourceUpdatInterval;
-        NSTimeInterval intUpdate = [sourceUpdatInterval doubleValue];
+        NSTimeInterval intUpdate = [[DYPreferences sharedInstance] updateInterval];
         
         if(-[lastUpdateDate timeIntervalSinceNow]>intUpdate){
             [DYFeedParserWrapper parseUrl:[NSURL URLWithString:rss.sourceUrl] timeout:10 completion:^(NSArray *items) {
