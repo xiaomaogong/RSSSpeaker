@@ -33,15 +33,7 @@ static DYFeedParserWrapper *sharedInstance;
     return self;
 }
 
-+ (void)tryParseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(MWFeedInfo *rssInfo))completionHandler;
-{
-    DYRSSFetchOperation *operation = [[DYRSSFetchOperation alloc] initWithTryURL:url timeout:timeout completionHandler:completionHandler];
-    NSOperationQueue *queue = [[[self sharedInstance] queueArr] objectAtIndex:rand()%MAX_NUM_OF_QUEUES];
-    [queue addOperation:operation];
-
-}
-
-+ (void)parseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(NSArray *items))completionHandler
++ (void)parseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(NSArray *items, NSString *feedInfo, NSError *error))completionHandler
 {
     DYRSSFetchOperation *operation = [[DYRSSFetchOperation alloc] initWithURL:url timeout:timeout completionHandler:completionHandler];
     NSOperationQueue *queue = [[[self sharedInstance] queueArr] objectAtIndex:rand()%MAX_NUM_OF_QUEUES];

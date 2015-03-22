@@ -6,9 +6,6 @@
 @property (assign) NSTimeInterval timeoutInterval;//请求超时时间（秒）
 
 //尝试解析rss源，如果成功，返回源信息，否则返回nil
-+ (void)parseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(NSArray *items))completionHandler;
-
-//尝试解析rss源，如果成功，返回源信息，否则返回nil
-+ (void)tryParseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(MWFeedInfo *rssInfo))completionHandler;
++ (void)parseUrl:(NSURL *)url timeout:(NSTimeInterval)timeout completion:(void (^)(NSArray *items, NSString *feedInfo, NSError *error))completionHandler;
 
 @end

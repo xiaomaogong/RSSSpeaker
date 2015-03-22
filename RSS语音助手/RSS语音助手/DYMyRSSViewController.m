@@ -11,6 +11,11 @@
 #import "DYMyRSSTableViewCell.h"
 #import "AppDelegate.h"
 #import "DYRSS.h"
+#import "DYFeedParserWrapper.h"
+#import "DYUtil.h"
+#import "DYRSSDAL.h"
+#import "DYArticle.h"
+#import "DYConverter.h"
 
 @interface DYMyRSSViewController ()
 
@@ -121,18 +126,37 @@
     NSString* url = [alertView textFieldAtIndex:0].text;
     
     if ([url length] != 0 && buttonIndex == [alertView firstOtherButtonIndex]) {
-        NSManagedObjectContext* context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        
-        DYRSS* rss = [NSEntityDescription insertNewObjectForEntityForName:@"DYRSS" inManagedObjectContext:context];
-        rss.title = url;
-        NSError * err;
-        [context save:&err];
-        if (!err) {
-            [rssArr addObject:rss];
-            [self.tableView reloadData];
-        }else{
-            NSLog(@"Fail to insert RSS with error %@",err.description);
-        }
+        [DYFeedParserWrapper parseUrl:[NSURL URLWithString:url] timeout:30 completion:^(NSArray *items, NSString *feedInfo, NSError *error) {
+            if (error) {
+                /// TODO:UI show this error
+                NSLog(@"Fail to parse feed.Error:%@.FeedUrl:%@.", error, url);
+            } else {
+                NSManagedObjectContext *pmoc = [DYUtil getPrivateManagedObjectContext];
+                DYRSS *addRSS = [NSEntityDescription insertNewObjectForEntityForName:@"DYRSS" inManagedObjectContext:pmoc];
+                addRSS.title = feedInfo ? feedInfo : url;
+                addRSS.sourceUrl = url;
+                addRSS.lastUpdateTime = [NSDate date];
+                
+                
+                DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
+                rssDal.delegate = (id)self;
+                NSMutableSet *articles = [[NSMutableSet alloc] init];
+                for (MWFeedItem *item in items) {
+                    [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
+                }
+                [rssDal addRSS:addRSS withArticles:articles withContext:pmoc
+                       success:^{
+                           [self->rssArr addObject:addRSS];
+                           [self.tableView reloadData];
+                       }
+                       fail:^(NSString *error) {
+                           /// TODO:UI show this error
+                           NSLog(@"Fail to parse feed.Error:%@.FeedUrl:%@.", error, url);
+                       }
+                ];
+                
+            }
+        }];
     }
 }
 @end

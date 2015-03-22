@@ -9,19 +9,19 @@
 
 @property (assign, nonatomic) NSTimeInterval timeout;
 @property (copy, nonatomic) NSURL *url;
-@property (copy, nonatomic) void (^completionHandler)(NSArray *items);
+@property (copy, nonatomic) void (^completionHandler)(NSArray *items, NSString *feedInfo, NSError *error);
 @property (assign) BOOL isTimeout;
 @property (assign) BOOL fetchFinished;
 @property (nonatomic, retain)MWFeedParser *feedParser;
 @property (nonatomic, retain) NSMutableArray *fetchedFeeds;
+@property (nonatomic, retain) NSString *feedInfo;
 @property (nonatomic, retain) NSTimer *timer;
-@property (copy, nonatomic) void (^tryCompletionHandler)(MWFeedInfo *feedInfo);
 
 @end
 
 @implementation DYRSSFetchOperation
 
-- (id) initWithURL:(NSURL *)url timeout:(NSTimeInterval)timeout completionHandler:(void (^)(NSArray *items))completionHandler
+- (id) initWithURL:(NSURL *)url timeout:(NSTimeInterval)timeout completionHandler:(void (^)(NSArray *items, NSString *feedInfo, NSError *error))completionHandler
 {
     if(self = [super init]){
         _completionHandler = completionHandler;
@@ -42,31 +42,6 @@
     return self;
 }
 
-- (id)initWithTryURL:(NSURL *)url timeout:(NSTimeInterval)timeout completionHandler:(void (^)(MWFeedInfo *items))completionHandler
-{
-    if(self = [super init]){
-        _tryCompletionHandler = completionHandler;
-        
-        _fetchedFeeds = [NSMutableArray array];
-        
-        _feedParser = [[MWFeedParser alloc]initWithFeedURL:url];
-        _feedParser.delegate = self;
-        _feedParser.feedParseType = ParseTypeFull;
-        _feedParser.connectionType = ConnectionTypeSynchronously;//采用同步方式发送请求
-        
-        _isTimeout = NO;
-        
-        _fetchFinished = NO;
-        
-        _url = url;
-        
-        _timeout = timeout;
-        
-        _timer = [NSTimer timerWithTimeInterval:timeout target:self selector:@selector(parserTimeout) userInfo:nil repeats:NO];
-    }
-    return self;
-}
-
 - (void)dealloc
 {
     self.timer = nil;
@@ -74,16 +49,12 @@
     self.fetchedFeeds = nil;
     self.completionHandler = nil;
     self.url = nil;
-    self.tryCompletionHandler = nil;
-    
 #ifdef PARSER_LOG
     NSLog(@"queue dealloc");
 #endif
-
 }
 
 - (void)start{
-    
 #ifdef PARSER_LOG
     NSLog(@"queue start");
 #endif
@@ -94,7 +65,6 @@
 }
 
 - (void)main{
-    
 #ifdef PARSER_LOG
     NSLog(@"queue main");
 #endif
@@ -102,8 +72,7 @@
     [_feedParser parse];
 }
 
-- (BOOL)isFinished
-{
+- (BOOL)isFinished {
     if(_isTimeout||_fetchFinished){
         return YES;
     }
@@ -121,26 +90,22 @@
     _isTimeout = YES;
     dispatch_async(dispatch_get_main_queue(), ^{
         if(self.completionHandler){
-            self.completionHandler(self.fetchedFeeds);
+            self.completionHandler(self.fetchedFeeds, _feedInfo, nil);
         }
     });
-    
 #ifdef PARSER_LOG
     NSLog(@"queue timeout");
 #endif
-   
     [self didChangeValueForKey:@"isFinished"];
 }
 
 #pragma mark - MWFeedParser Delegate
 
 -(void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
-    if(self.tryCompletionHandler){
-        self.tryCompletionHandler(info);
-        [self willChangeValueForKey:@"isFinished"];
-        _fetchFinished = YES;
-        [self didChangeValueForKey:@"isFinished"];
-    }
+    [self willChangeValueForKey:@"isFinished"];
+    _fetchFinished = YES;
+    _feedInfo = info.title;
+    [self didChangeValueForKey:@"isFinished"];
 }
 
 -(void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
@@ -153,24 +118,34 @@
     }
     
     [self willChangeValueForKey:@"isFinished"];
-    
     _fetchFinished = YES;
-
     dispatch_async(dispatch_get_main_queue(), ^{
         if(self.completionHandler){
-            self.completionHandler(self.fetchedFeeds);
-        }
-        
-        if(self.tryCompletionHandler){
-            self.tryCompletionHandler(nil);
+            self.completionHandler(self.fetchedFeeds, self.feedInfo, nil);
         }
     });
-    
+    [self didChangeValueForKey:@"isFinished"];
 #ifdef PARSER_LOG
     NSLog(@"queue finish");
 #endif
-   
+}
+
+- (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
+    if(_isTimeout){
+        return;
+    }
+    
+    [self willChangeValueForKey:@"isFinished"];
+    _fetchFinished = YES;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if(self.completionHandler){
+            self.completionHandler(nil, _feedInfo, error);
+        }
+    });
     [self didChangeValueForKey:@"isFinished"];
+#ifdef PARSER_LOG
+    NSLog(@"queue finish");
+#endif
 }
 
 @end

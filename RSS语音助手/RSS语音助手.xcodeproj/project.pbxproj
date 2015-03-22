@@ -29,6 +29,7 @@
 		DF8644BA1ABDB4D3004A8BB7 /* DYGetFetchedRecordsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644B31ABDB4D3004A8BB7 /* DYGetFetchedRecordsModel.m */; };
 		DF8644BB1ABDB4D3004A8BB7 /* DYRSSFetchOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644B51ABDB4D3004A8BB7 /* DYRSSFetchOperation.m */; };
 		DF8644BC1ABDB4D3004A8BB7 /* NSManagedObjectContext+PrivateContext.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644B71ABDB4D3004A8BB7 /* NSManagedObjectContext+PrivateContext.m */; };
+		DF8C95831ABEE1DC0023BDFE /* DYConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8C95821ABEE1DC0023BDFE /* DYConverter.m */; };
 		DF979BC11ABB258500DAD4AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC01ABB258500DAD4AE /* main.m */; };
 		DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC31ABB258500DAD4AE /* AppDelegate.m */; };
 		DF979BC71ABB258500DAD4AE /* RSS____.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC51ABB258500DAD4AE /* RSS____.xcdatamodeld */; };
@@ -92,6 +93,8 @@
 		DF8644B51ABDB4D3004A8BB7 /* DYRSSFetchOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSSFetchOperation.m; sourceTree = "<group>"; };
 		DF8644B61ABDB4D3004A8BB7 /* NSManagedObjectContext+PrivateContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObjectContext+PrivateContext.h"; sourceTree = "<group>"; };
 		DF8644B71ABDB4D3004A8BB7 /* NSManagedObjectContext+PrivateContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObjectContext+PrivateContext.m"; sourceTree = "<group>"; };
+		DF8C95811ABEE1DC0023BDFE /* DYConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYConverter.h; sourceTree = "<group>"; };
+		DF8C95821ABEE1DC0023BDFE /* DYConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYConverter.m; sourceTree = "<group>"; };
 		DF979BBB1ABB258500DAD4AE /* RSS语音助手.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RSS语音助手.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF979BBF1ABB258500DAD4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF979BC01ABB258500DAD4AE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 			children = (
 				508E25801ABE8F98009051FB /* DYUtil.h */,
 				508E25811ABE8F98009051FB /* DYUtil.m */,
+				DF8C95811ABEE1DC0023BDFE /* DYConverter.h */,
+				DF8C95821ABEE1DC0023BDFE /* DYConverter.m */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -445,6 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF8C95831ABEE1DC0023BDFE /* DYConverter.m in Sources */,
 				DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */,
 				DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */,
 				5021AC121ABC6B4000877910 /* DYArticle.m in Sources */,

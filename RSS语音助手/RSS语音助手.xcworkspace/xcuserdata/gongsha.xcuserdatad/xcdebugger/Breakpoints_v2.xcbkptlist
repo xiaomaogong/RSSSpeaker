@@ -9,30 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "RSS&#x8bed;&#x97f3;&#x52a9;&#x624b;/DYRSS.h"
-            timestampString = "448636632.620981"
+            filePath = "RSS&#x8bed;&#x97f3;&#x52a9;&#x624b;/DYMyRSSViewController.m"
+            timestampString = "448730217.086889"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "13"
-            endingLineNumber = "13"
-            landmarkName = "@interface DYRSS"
-            landmarkType = "2">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "RSS&#x8bed;&#x97f3;&#x52a9;&#x624b;/DYRSS.h"
-            timestampString = "448636633.997025"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "14"
-            endingLineNumber = "14"
-            landmarkName = "@interface DYRSS"
-            landmarkType = "2">
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-alertView:clickedButtonAtIndex:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

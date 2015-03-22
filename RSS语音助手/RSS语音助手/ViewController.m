@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "SWRevealViewController.h"
 #import "DYArticle.h"
-
+#import "DYRSSDAL.h"
 #import "DYArticle.h"
 //#import "DYIURLParser.h"
 #import "DYSongTableViewCell.h"
@@ -25,8 +25,8 @@
 {
 //    DYIURLParser* parser;
     DYPlayer* player;
-    UITableView* tv;
     DYSongTableViewCell* playingCell;
+    DYRSSDAL* dal;
 }
 
 - (void)viewDidLoad {
@@ -42,17 +42,28 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-//    parser = [DYIURLParser defaultInstance];
     player = [DYPlayer defaultInstance];
     [player setDelegate:self];
     
     self.songs = [NSMutableArray array];
     self->playingCell = nil;
+    dal = [DYRSSDAL new];
     [self loadSongs];
 }
 
 - (void)loadSongs
 {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        if ([dal isSameDayCompareToLastUpdatedTime]) {
+            self.songs = [NSMutableArray arrayWithArray:[dal getAllArticles]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.tableView reloadData];
+            });
+        }else
+        {
+            [dal deleteAllArticles];
+        }
+    });
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,44 +73,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return 1;
-    if (tv == nil) {
-        tv = tableView;
-    }
     return [self.songs count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#if 1
     DYSongTableViewCell *cell = [DYSongTableViewCell initWithDYArticle:self.songs[indexPath.row] delegate:self tableView:tableView];
-#endif
-    
-#if 0
-    DYSongTableViewCell *cell = [DYSongTableViewCell initWithDYArticle:nil delegate:self tableView:tableView];
-#endif
     return cell;
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return UITableViewCellEditingStyleDelete;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete)
-    {
-        [self.songs removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
-
-- (IBAction)addASong:(id)sender {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (IBAction)outputFavirateSongs:(id)sender {
@@ -112,53 +96,40 @@
 }
 
 - (IBAction)playSong:(id)sender {
-    [player play];
+    UIButton* bt = sender;
+    if(bt.imageView.tag == 1)
+    {
+        bt.imageView.tag = 0;
+        [bt.imageView setImage: [UIImage imageNamed:@"stop.png"]];
+        [player play];
+    }else
+    {
+        bt.imageView.tag = 1;
+        [bt.imageView setImage: [UIImage imageNamed:@"play.png"]];
+        [player stop];
+    }
+
 }
 
 - (IBAction)playPreviousSong:(id)sender {
-    [player playPrevious];
+    if (self.slider.value >= 1) {
+        DYArticle* a = self.songs[(int)(self.slider.value -1)];
+        [self playArticle:a];
+    }
 }
 
 - (IBAction)playNextSong:(id)sender {
-    [player playNext];
-}
-
-- (IBAction)lauchDialog:(id)sender {
-    // Here we need to pass a full frame
-//    CustomIOS7AlertView *alertView = [[CustomIOS7AlertView alloc] init];
-    
-    // Add some custom content to the alert view
-//    [alertView setContainerView:[self createDemoView]];
-    
-    // Modify the parameters
-//    [alertView setButtonTitles:[NSMutableArray arrayWithObjects:@"Save", @"Cancel", nil]];
-//    [alertView setDelegate:self];
-    
-    
-//    [alertView setUseMotionEffects:true];
-    
-    // And launch the dialog
-//    [alertView show];
-}
-
-
-- (UIView *)createDemoView
-{
-    UIView *demoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 290, 200)];
-    NSInteger titleHeight = 30;
-    UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 270, titleHeight)];
-    [title setText:@"输入WEB地址"];
-    title.textAlignment = UITextAlignmentCenter;
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 10+titleHeight, 270, 170)];
-    [demoView addSubview:title];
-    [demoView addSubview:textView];
-    
-    return demoView;
+    if (self.slider.value < self.songs.count - 1) {
+        DYArticle* a = self.songs[(int)(self.slider.value + 1)];
+        [self playArticle:a];
+    }
 }
 
 - (void) cell:(DYSongTableViewCell*)cell didFavorOrNot:(BOOL)bFavor {
     
 }
+
+
 
 - (void) cellDidPlaySong:(DYSongTableViewCell *)cell {
     if (nil != cell) {
@@ -166,18 +137,14 @@
     }
     playingCell = cell;
     
-    /// TODO:Need Play API
     DYArticle * a = [self getArticalByIdentify:playingCell.identifier];
     if(a != nil)
     {
-//        [player setCurrentData:a.arrcontent];
-        self.slider.minimumValue = 0.0;
-//        self.slider.maximumValue = a.count;
-        [player play];
+        [self playArticle:a];
     }
 }
 
--(DYArticle*)getArticalByIdentify:(long)indentifier{
+-(DYArticle*)getArticalByIdentify:(NSString*)indentifier{
     DYArticle* result = nil;
     if(self.songs != nil){
       NSInteger index =  [self.songs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
@@ -203,11 +170,23 @@
 
 -(void)player:(DYPlayer *)player willPlayNextContent:(NSString *)content{
     NSLog(@"Will play : %@", content);
+    self.slider.value = self.slider.value + 1;
 }
 
 -(void)playerDidFinishedPlayContent:(DYPlayer *)player{
     
     NSLog(@"Finished read current artical!");
+}
+
+#pragma mark Private Methods
+
+- (void)playArticle:(DYArticle *)a {
+    NSArray* arr =[a.content componentsSeparatedByString:@"\n"];
+    [player setCurrentData:arr];
+    self.slider.value = 0.0;
+    self.slider.minimumValue = 0.0;
+    self.slider.maximumValue = arr.count;
+    [player play];
 }
 
 @end

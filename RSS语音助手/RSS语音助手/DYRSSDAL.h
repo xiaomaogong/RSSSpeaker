@@ -25,10 +25,18 @@
 - (void)dislikeArticle:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
 - (void)likeArticle:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
 
-- (void)insertArticlesWithFeedItems:(NSArray *)items withFeedUrlStr:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
+- (void)insertArticlesWithFeedItems:(NSSet *)items withFeedUrlStr:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
+- (void)addRSS:(DYRSS *)rss withArticles:(NSSet *)articles withContext:(NSManagedObjectContext *)context success:(void (^)(void))success fail:(void (^)(NSString *error))fail;
 - (void)deleteRSS:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
 
 - (void)markAsRead:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
 
+#pragma mark 主页
+
+-(BOOL)isSameDayCompareToLastUpdatedTime;
+
+-(NSArray*)getAllArticles;
+
+-(void)deleteAllArticles;
 
 @end

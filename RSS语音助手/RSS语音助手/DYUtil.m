@@ -12,6 +12,7 @@
 
 @implementation DYUtil
 +(NSManagedObjectContext*)getPrivateManagedObjectContext{
-    return [[APP_DELEGATE managedObjectContext] generatePrivateContext];
+    //return [[APP_DELEGATE managedObjectContext] generatePrivateContext];
+    return [APP_DELEGATE managedObjectContext];
 }
 @end

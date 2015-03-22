@@ -6,6 +6,7 @@
 #import "DYRSSDAL.h"
 #import "DYUtil.h"
 #import "DYPreferences.h"
+#import "DYConverter.h"
 
 @interface DYFeedUpdateController() <DYRSSDALDelegate>
 
@@ -64,11 +65,18 @@ static DYFeedUpdateController *sharedInstance;
         NSTimeInterval intUpdate = [[DYPreferences sharedInstance] updateInterval];
         
         if(-[lastUpdateDate timeIntervalSinceNow]>intUpdate){
-            [DYFeedParserWrapper parseUrl:[NSURL URLWithString:rss.sourceUrl] timeout:10 completion:^(NSArray *items) {
+            [DYFeedParserWrapper parseUrl:[NSURL URLWithString:rss.sourceUrl] timeout:10 completion:^(NSArray *items, NSString *feedInfo, NSError *error) {
+                if (error) {
+                    return ;
+                }
                 NSManagedObjectContext *pmoc = [DYUtil getPrivateManagedObjectContext];
                 DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
                 rssDal.delegate = (id)self;
-                [rssDal insertArticlesWithFeedItems:items withFeedUrlStr:rss.sourceUrl withContext:pmoc];
+                NSMutableSet *articles = [[NSMutableSet alloc] init];
+                for (MWFeedItem *item in items) {
+                    [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
+                }
+                [rssDal insertArticlesWithFeedItems:articles withFeedUrlStr:rss.sourceUrl withContext:pmoc];
             }];
             
             DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel alloc] init];

@@ -49,7 +49,7 @@
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
-@synthesize backgroundObjectContext = _backgroundObjectContext;
+//@synthesize backgroundObjectContext = _backgroundObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -96,6 +96,7 @@
     return _persistentStoreCoordinator;
 }
 
+/*
 - (NSManagedObjectContext *)backgroundObjectContext {
     if (nil != _backgroundObjectContext) {
         return _backgroundObjectContext;
@@ -108,14 +109,28 @@
     }
     return _backgroundObjectContext;
 }
+*/
 
 - (NSManagedObjectContext *)managedObjectContext {
+    /*
     if (nil != _managedObjectContext) {
         return _managedObjectContext;
     }
     
     _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     _managedObjectContext.parentContext = [self backgroundObjectContext];
+    return _managedObjectContext;
+    */
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+        
+    }
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator: coordinator];
+    }
+    
     return _managedObjectContext;
 }
 
@@ -145,6 +160,7 @@
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
+    /*
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
     NSManagedObjectContext *rootObjectContext = [self backgroundObjectContext];
     
@@ -184,6 +200,15 @@
                     NSLog(@"Save root context failed and error is %@", error);
                 }
             }];
+        }
+    }
+    */
+    NSError *error = nil;
+    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
+    if (managedObjectContext != nil) {
+        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
+            NSLog(@"Unresolved error %@,%@",error,[error userInfo]);
+            abort();
         }
     }
 }

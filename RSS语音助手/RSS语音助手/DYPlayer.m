@@ -56,6 +56,7 @@ typedef enum : NSUInteger {
 -(void) setCurrentData: (NSArray*) data{
     currentArticle = data;
     state = Initialized;
+    currentPlayingIndex = 0;
 }
 
 -(void) play{
