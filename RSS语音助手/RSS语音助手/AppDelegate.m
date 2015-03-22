@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "DYGetFetchedRecordsModel.h"
+#import "DYPreferences.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +18,7 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [DYPreferences sharedInstance];
     return YES;
 }
 
@@ -48,6 +49,7 @@
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
+@synthesize backgroundObjectContext = _backgroundObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
@@ -94,19 +96,26 @@
     return _persistentStoreCoordinator;
 }
 
-
-- (NSManagedObjectContext *)managedObjectContext {
-    // Returns the managed object context for the application (which is already bound to the persistent store coordinator for the application.)
-    if (_managedObjectContext != nil) {
-        return _managedObjectContext;
+- (NSManagedObjectContext *)backgroundObjectContext {
+    if (nil != _backgroundObjectContext) {
+        return _backgroundObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (!coordinator) {
-        return nil;
+    if (coordinator != nil) {
+        _backgroundObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        [_backgroundObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    _managedObjectContext = [[NSManagedObjectContext alloc] init];
-    [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+    return _backgroundObjectContext;
+}
+
+- (NSManagedObjectContext *)managedObjectContext {
+    if (nil != _managedObjectContext) {
+        return _managedObjectContext;
+    }
+    
+    _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _managedObjectContext.parentContext = [self backgroundObjectContext];
     return _managedObjectContext;
 }
 
@@ -136,14 +145,45 @@
 #pragma mark - Core Data Saving support
 
 - (void)saveContext {
-    NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
-    if (managedObjectContext != nil) {
-        NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSManagedObjectContext *rootObjectContext = [self backgroundObjectContext];
+    
+    if (nil == managedObjectContext) {
+        return;
+    }
+    if ([managedObjectContext hasChanges]) {
+        NSLog(@"Main context need to save");
+        [managedObjectContext performBlockAndWait:^{
+            NSError *error = nil;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Save main context failed and error is %@", error);
+            }
+        }];
+    }
+    
+    if (nil == rootObjectContext) {
+        return;
+    }
+    
+    BOOL needWait = NO;
+    
+    if ([rootObjectContext hasChanges]) {
+        NSLog(@"Root context need to save");
+        if (needWait) {
+            [rootObjectContext performBlockAndWait:^{
+                NSError *error = nil;
+                if (![_backgroundObjectContext save:&error]) {
+                    NSLog(@"Save root context failed and error is %@", error);
+                }
+            }];
+        }
+        else {
+            [rootObjectContext performBlock:^{
+                NSError *error = nil;
+                if (![_backgroundObjectContext save:&error]) {
+                    NSLog(@"Save root context failed and error is %@", error);
+                }
+            }];
         }
     }
 }

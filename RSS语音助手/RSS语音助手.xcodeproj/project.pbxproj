@@ -34,6 +34,7 @@
 		DF979BCA1ABB258500DAD4AE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BC91ABB258500DAD4AE /* ViewController.m */; };
 		DF979BD21ABB258500DAD4AE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF979BD01ABB258500DAD4AE /* LaunchScreen.xib */; };
 		DF979BDE1ABB258500DAD4AE /* RSS____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = DF979BDD1ABB258500DAD4AE /* RSS____Tests.m */; };
+		DFC5466F1ABE89F1001A0E5C /* DYPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = DFC5466E1ABE89F1001A0E5C /* DYPreferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		DF979BD71ABB258500DAD4AE /* RSS语音助手Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RSS语音助手Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF979BDC1ABB258500DAD4AE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF979BDD1ABB258500DAD4AE /* RSS____Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "RSS____Tests.m"; sourceTree = "<group>"; };
+		DFC5466D1ABE89F1001A0E5C /* DYPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYPreferences.h; sourceTree = "<group>"; };
+		DFC5466E1ABE89F1001A0E5C /* DYPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYPreferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +237,7 @@
 		DF979BBD1ABB258500DAD4AE /* RSS语音助手 */ = {
 			isa = PBXGroup;
 			children = (
+				DFC5466C1ABE89CB001A0E5C /* User */,
 				DF8644AA1ABDB420004A8BB7 /* DAL */,
 				DF6082CC1ABC7BF300ABB421 /* Data */,
 				DF35A8051ABB2818008BF6F0 /* Player */,
@@ -274,6 +278,15 @@
 				DF979BDC1ABB258500DAD4AE /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		DFC5466C1ABE89CB001A0E5C /* User */ = {
+			isa = PBXGroup;
+			children = (
+				DFC5466D1ABE89F1001A0E5C /* DYPreferences.h */,
+				DFC5466E1ABE89F1001A0E5C /* DYPreferences.m */,
+			);
+			name = User;
 			sourceTree = "<group>";
 		};
 		F09FE54A2212CDDD1DC46223 /* Frameworks */ = {
@@ -439,6 +452,7 @@
 				DF979BC71ABB258500DAD4AE /* RSS____.xcdatamodeld in Sources */,
 				DF8644BA1ABDB4D3004A8BB7 /* DYGetFetchedRecordsModel.m in Sources */,
 				DF8644BC1ABDB4D3004A8BB7 /* NSManagedObjectContext+PrivateContext.m in Sources */,
+				DFC5466F1ABE89F1001A0E5C /* DYPreferences.m in Sources */,
 				DF35A80A1ABB2847008BF6F0 /* DYPlayer.m in Sources */,
 				5021AC1B1ABC78BC00877910 /* SWRevealViewController.m in Sources */,
 			);

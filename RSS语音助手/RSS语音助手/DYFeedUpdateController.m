@@ -5,7 +5,7 @@
 #import "DYRSS.h"
 #import "DYRSSDAL.h"
 
-@interface DYFeedUpdateController()
+@interface DYFeedUpdateController() <DYRSSDALDelegate>
 
 @property (assign, nonatomic) NSTimeInterval updateCheckTimeInterval;
 @property (strong, nonatomic) dispatch_source_t dispatchSource;
@@ -17,6 +17,7 @@
 @end
 
 @implementation DYFeedUpdateController
+
 static DYFeedUpdateController *sharedInstance;
 
 - (instancetype)init{
@@ -134,4 +135,13 @@ static DYFeedUpdateController *sharedInstance;
 + (void)invalidateRSSList{
     [[self sharedInstance] invalidateRSSList];
 }
+
+#pragma mark - DYRSSDALDelegate
+
+- (void)articlesDidInsert {
+    //通知文章变化事件
+    [[NSNotificationCenter defaultCenter] postNotificationName:ARTICLES_CHANGE
+                                                        object:nil];
+}
+
 @end

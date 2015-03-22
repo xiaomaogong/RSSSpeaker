@@ -19,6 +19,9 @@
 //在此定义你用到的宏
 #define APP_DELEGATE ((AppDelegate *)([[UIApplication sharedApplication] delegate]))
 
+//事件
+#define ARTICLES_CHANGE @"ARTICLES_CHANGE"
+
 #endif
 
 
