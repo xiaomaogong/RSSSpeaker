@@ -9,9 +9,10 @@
 #import "AppDelegate.h"
 #import "DYGetFetchedRecordsModel.h"
 #import "DYPreferences.h"
+#import "DYFeedUpdateController.h"
 
 @interface AppDelegate ()
-
+@property (readonly, strong, nonatomic) NSManagedObjectContext *backgroundObjectContext;
 @end
 
 @implementation AppDelegate
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [DYPreferences sharedInstance];
+    [DYFeedUpdateController start];
     return YES;
 }
 
@@ -122,7 +124,7 @@
 // Core Data
 - (NSArray *)fetchRecordsWithPrivateContext:(DYGetFetchedRecordsModel *)getModel privateContext:(NSManagedObjectContext *)privateContext {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc]init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:getModel.entityName inManagedObjectContext:self.managedObjectContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:getModel.entityName inManagedObjectContext:privateContext];
     [fetchRequest setEntity:entity];
     if (getModel.sortName) {
         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:getModel.sortName ascending:NO];

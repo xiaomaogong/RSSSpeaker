@@ -10,6 +10,6 @@
 
 @interface NSManagedObjectContext (PrivateContext)
 
-+(NSManagedObjectContext *)generatePrivateContextWithParent:(NSManagedObjectContext *)parentContext;
++ (NSManagedObjectContext *)generatePrivateContextWithParent:(NSManagedObjectContext *)parentContext;
 
 @end
