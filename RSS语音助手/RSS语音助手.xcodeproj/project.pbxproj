@@ -14,6 +14,7 @@
 		508E25721ABD5CE6009051FB /* DYMyRSSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25711ABD5CE6009051FB /* DYMyRSSViewController.m */; };
 		508E25751ABD5D19009051FB /* DYMyFavorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25741ABD5D19009051FB /* DYMyFavorViewController.m */; };
 		508E257E1ABDBC8E009051FB /* DYMyRSSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E257D1ABDBC8E009051FB /* DYMyRSSTableViewCell.m */; };
+		508E25821ABE8F98009051FB /* DYUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25811ABE8F98009051FB /* DYUtil.m */; };
 		BE03834499D04B026AF4E17B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD34B965AAD52B616EE900 /* libPods.a */; };
 		DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF35A7F71ABB261D008BF6F0 /* Images.xcassets */; };
 		DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */; };
@@ -64,6 +65,8 @@
 		508E25741ABD5D19009051FB /* DYMyFavorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYMyFavorViewController.m; sourceTree = "<group>"; };
 		508E257C1ABDBC8E009051FB /* DYMyRSSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYMyRSSTableViewCell.h; sourceTree = "<group>"; };
 		508E257D1ABDBC8E009051FB /* DYMyRSSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYMyRSSTableViewCell.m; sourceTree = "<group>"; };
+		508E25801ABE8F98009051FB /* DYUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtil.h; sourceTree = "<group>"; };
+		508E25811ABE8F98009051FB /* DYUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUtil.m; sourceTree = "<group>"; };
 		53B7AD06549F05168EF2AE10 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DF35A7F71ABB261D008BF6F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF35A7FE1ABB272F008BF6F0 /* DYSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSongTableViewCell.h; sourceTree = "<group>"; };
@@ -131,6 +134,15 @@
 				0C34DA194517E18D3366DB13 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		508E257F1ABE8F72009051FB /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				508E25801ABE8F98009051FB /* DYUtil.h */,
+				508E25811ABE8F98009051FB /* DYUtil.m */,
+			);
+			name = Util;
 			sourceTree = "<group>";
 		};
 		DF35A7F91ABB2665008BF6F0 /* ViewControllers */ = {
@@ -237,6 +249,7 @@
 		DF979BBD1ABB258500DAD4AE /* RSS语音助手 */ = {
 			isa = PBXGroup;
 			children = (
+				508E257F1ABE8F72009051FB /* Util */,
 				DFC5466C1ABE89CB001A0E5C /* User */,
 				DF8644AA1ABDB420004A8BB7 /* DAL */,
 				DF6082CC1ABC7BF300ABB421 /* Data */,
@@ -446,6 +459,7 @@
 				DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */,
 				508E25751ABD5D19009051FB /* DYMyFavorViewController.m in Sources */,
 				DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */,
+				508E25821ABE8F98009051FB /* DYUtil.m in Sources */,
 				DF35A8031ABB273A008BF6F0 /* DYSettingViewController.m in Sources */,
 				DF8644AD1ABDB48D004A8BB7 /* DYRSSDAL.m in Sources */,
 				508E25721ABD5CE6009051FB /* DYMyRSSViewController.m in Sources */,
