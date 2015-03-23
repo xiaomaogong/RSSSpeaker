@@ -72,29 +72,29 @@ typedef enum : NSUInteger {
         }
         currentPlayingIndex = index + 1;
         NSString* content = currentArticle[index];
-        if(notifier != nil)
-            [notifier player:self willPlayNextContent:content];
+        //if(notifier != nil)
+            //[notifier player:self willPlayNextContent:content];
         [speeker play:content];
         state = Playing;
-    }else if (currentArticle != nil && index == [currentArticle count]){
+    } else if (currentArticle != nil && index == [currentArticle count]){
         state = Finished;
-        if(notifier != nil)
-            [notifier playerDidFinishedPlayContent:self];
+        //if(notifier != nil)
+            //[notifier playerDidFinishedPlayContent:self];
     }
 }
 
--(void) stop{
-    if(currentArticle != nil){
+-(void) pause {
+    if(currentArticle != nil) {
         [speeker stop];
         state = Paused;
     }
 }
 
--(void) playNext{
+-(void) playNext {
     [self play:currentPlayingIndex +1];
 }
 
--(void) playPrevious{
+-(void) playPrevious {
     [self play:currentPlayingIndex -2];
 }
 

@@ -13,8 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *lbTitle;
 
-
 -(void)setRSS:(DYRSS*)rss;
-
 
 @end

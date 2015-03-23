@@ -10,23 +10,17 @@
 #import "DYSongTableViewCell.h"
 #import "DYPlayer.h"
 
-@interface ViewController : UIViewController< DYSongTableViewCellDelegate, DYPlayerDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UIViewController< DYSongTableViewCellDelegate, DYPlayerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property(nonatomic, strong) NSMutableArray *songs;
-
 @property (weak, nonatomic) IBOutlet UISlider *slider;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
-- (IBAction)outputFavirateSongs:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 
 - (IBAction)locatePositionOfSong:(id)sender;
-
 - (IBAction)playSong:(id)sender;
-
 - (IBAction)playPreviousSong:(id)sender;
-
 - (IBAction)playNextSong:(id)sender;
 
 @end

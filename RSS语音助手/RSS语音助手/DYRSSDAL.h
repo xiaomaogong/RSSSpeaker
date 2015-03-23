@@ -22,21 +22,17 @@
 
 @property(nonatomic,assign) id<DYRSSDALDelegate> delegate;
 
+// 取消收藏文章
 - (void)dislikeArticle:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
+// 收藏文章
 - (void)likeArticle:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
-
-- (void)insertArticlesWithFeedItems:(NSSet *)items withFeedUrlStr:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
-- (void)addRSS:(DYRSS *)rss withArticles:(NSSet *)articles withContext:(NSManagedObjectContext *)context success:(void (^)(void))success fail:(void (^)(NSString *error))fail;
-- (void)deleteRSS:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
-
+// 标志文章已读
 - (void)markAsRead:(DYArticle *)article withContext:(NSManagedObjectContext *)context;
-
-#pragma mark 主页
-
--(BOOL)isSameDayCompareToLastUpdatedTime;
-
--(NSArray*)getAllArticles;
-
--(void)deleteAllArticles;
+// 插入FeedUrl关联的文章
+- (void)insertArticlesWithFeedurl:(NSSet *)articles withFeedUrlStr:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
+// 插入rss，以及相应的文章
+- (void)insertRSS:(DYRSS *)rss withArticles:(NSSet *)articles withContext:(NSManagedObjectContext *)context success:(void (^)(void))success fail:(void (^)(NSString *error))fail;
+// 删除rss
+- (void)removeRSS:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
 
 @end

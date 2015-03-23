@@ -11,19 +11,23 @@
 #import "DYArticle.h"
 #import "DYRSSDAL.h"
 #import "DYArticle.h"
-//#import "DYIURLParser.h"
 #import "DYSongTableViewCell.h"
 #import "DYPlayer.h"
+#import "DYRSSDAL.h"
+#import "DYUtil.h"
+#import "DYGetFetchedRecordsModel.h"
 
 #define INPUT_WEBPATH_SAVE      0
 #define INPUT_WEBPATh_CANCEL    1
+
+#define STOP_FLAG               0
+#define PLAY_FLAG               1
 
 @interface ViewController ()
 @end
 
 @implementation ViewController
 {
-//    DYIURLParser* parser;
     DYPlayer* player;
     DYSongTableViewCell* playingCell;
     DYRSSDAL* dal;
@@ -54,15 +58,8 @@
 - (void)loadSongs
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-        if ([dal isSameDayCompareToLastUpdatedTime]) {
-            self.songs = [NSMutableArray arrayWithArray:[dal getAllArticles]];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.tableView reloadData];
-            });
-        }else
-        {
-            [dal deleteAllArticles];
-        }
+        [self clearHistoryArticles];
+        self.songs = [NSMutableArray arrayWithArray:[self fetchAllArticles]];
     });
 }
 
@@ -86,9 +83,6 @@
     return 1;
 }
 
-- (IBAction)outputFavirateSongs:(id)sender {
-}
-
 - (IBAction)locatePositionOfSong:(id)sender {
     int index = (int)self.slider.value;
     NSLog(@"UISlider Locate at %i" ,index);
@@ -96,19 +90,22 @@
 }
 
 - (IBAction)playSong:(id)sender {
-    UIButton* bt = sender;
-    if(bt.imageView.tag == 1)
+    UIButton* bt = self.playButton;
+    if(bt.imageView.tag == STOP_FLAG)
     {
-        bt.imageView.tag = 0;
-        [bt.imageView setImage: [UIImage imageNamed:@"stop.png"]];
+        bt.imageView.tag = PLAY_FLAG;
+        
+        //[bt.imageView setImage: [UIImage imageNamed:@"stop.png"]];
+        [bt setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+        [self.view reloadInputViews];
         [player play];
     }else
     {
-        bt.imageView.tag = 1;
-        [bt.imageView setImage: [UIImage imageNamed:@"play.png"]];
-        [player stop];
+        bt.imageView.tag = STOP_FLAG;
+        //[bt.imageView setImage: [UIImage imageNamed:@"play.png"]];
+        [bt setBackgroundImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+        [player pause];
     }
-
 }
 
 - (IBAction)playPreviousSong:(id)sender {
@@ -125,29 +122,77 @@
     }
 }
 
-- (void) cell:(DYSongTableViewCell*)cell didFavorOrNot:(BOOL)bFavor {
-    
+#pragma DYSongTableViewCellDelegate
+
+// 喜爱歌曲状态
+- (void) cellDidChangeFavorStatus:(DYSongTableViewCell*)cell {
+    DYArticle * aArticle = [self getArticalByIdentify:playingCell.identifier];
+    if(aArticle != nil) {
+        DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
+        [rssDal likeArticle:aArticle withContext:[DYUtil getPrivateManagedObjectContext]];
+    }
 }
 
+// 取消喜爱状态
+- (void) cellDidChangeUnfavorStatus:(DYSongTableViewCell *)cell {
+    DYArticle * aArticle = [self getArticalByIdentify:playingCell.identifier];
+    if(aArticle != nil) {
+        DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
+        [rssDal dislikeArticle:aArticle withContext:[DYUtil getPrivateManagedObjectContext]];
+    }
+}
 
-
-- (void) cellDidPlaySong:(DYSongTableViewCell *)cell {
+// 播放状态
+- (void) cellDidChangePlayStatus:(DYSongTableViewCell *)cell {
     if (nil != cell) {
         [playingCell stopSong];
     }
     playingCell = cell;
-    
     DYArticle * a = [self getArticalByIdentify:playingCell.identifier];
     if(a != nil)
     {
+        if (a.isReaded == 0) {
+            DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
+            [rssDal markAsRead:a withContext:[DYUtil getPrivateManagedObjectContext]];
+        }
         [self playArticle:a];
     }
 }
 
--(DYArticle*)getArticalByIdentify:(NSString*)indentifier{
+// 停止状态
+- (void) cellDidChangeStopStatus:(DYSongTableViewCell *)cell {
+    playingCell = nil;
+
+}
+
+#pragma DYPlayerDelegate
+
+- (void) player:(DYPlayer*)player didCompleteProgress:(double)progress {
+    self.slider.value = progress;
+    if (progress >= 1.0) {
+        [playingCell setStopStatus];
+    }
+    NSLog(@"Play progress:%f", progress);
+}
+
+#pragma mark Private Methods
+
+- (void)playArticle:(DYArticle *)a {
+    self.playButton.imageView.tag = PLAY_FLAG;
+    [self.playButton setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+    
+    NSArray* arr =[a.content componentsSeparatedByString:@"\n"];
+    [player setCurrentData:arr];
+    self.slider.value = 0.0;
+    self.slider.minimumValue = 0.0;
+    self.slider.maximumValue = 1.0;
+    [player play];
+}
+
+- (DYArticle*)getArticalByIdentify:(NSString*)indentifier{
     DYArticle* result = nil;
     if(self.songs != nil){
-      NSInteger index =  [self.songs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+        NSInteger index =  [self.songs indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
             if (((DYArticle *)obj).url == indentifier) {
                 *stop = YES;
                 return YES;
@@ -159,34 +204,25 @@
     return  result;
 }
 
-- (void) cellDidStopSong:(DYSongTableViewCell *)cell {
-    playingCell = nil;
-    
-    /// TODO:Need Play API
-   
+- (void)clearHistoryArticles {
+    NSDate *today = [NSDate date];
+    DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel alloc] init];
+    getModel.entityName = @"DYArticle";
+    getModel.predicate = [NSPredicate predicateWithFormat:@"createdDate<%@",today];
+    NSManagedObjectContext *privateContext = [DYUtil getPrivateManagedObjectContext];
+    NSArray *fetchedResults = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:privateContext];
+    for (DYArticle *aArticle in fetchedResults) {
+        [privateContext delete:aArticle];
+    }
+    NSError *error;
+    [privateContext save:&error];
 }
 
-#pragma DYPlayerDelegate
-
--(void)player:(DYPlayer *)player willPlayNextContent:(NSString *)content{
-    NSLog(@"Will play : %@", content);
-    self.slider.value = self.slider.value + 1;
+- (NSArray*)fetchAllArticles {
+    DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel
+                                           alloc] init];
+    getModel.entityName = @"DYArticle";
+    NSArray* fetchedResults = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:[DYUtil getPrivateManagedObjectContext]];
+    return fetchedResults;
 }
-
--(void)playerDidFinishedPlayContent:(DYPlayer *)player{
-    
-    NSLog(@"Finished read current artical!");
-}
-
-#pragma mark Private Methods
-
-- (void)playArticle:(DYArticle *)a {
-    NSArray* arr =[a.content componentsSeparatedByString:@"\n"];
-    [player setCurrentData:arr];
-    self.slider.value = 0.0;
-    self.slider.minimumValue = 0.0;
-    self.slider.maximumValue = arr.count;
-    [player play];
-}
-
 @end

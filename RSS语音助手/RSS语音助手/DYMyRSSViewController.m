@@ -142,10 +142,13 @@
                 rssDal.delegate = (id)self;
                 NSMutableSet *articles = [[NSMutableSet alloc] init];
                 for (MWFeedItem *item in items) {
+                    if (item.date) {
+                        <#statements#>
+                    }
                     [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
                 }
-                [rssDal addRSS:addRSS withArticles:articles withContext:pmoc
-                       success:^{
+                [rssDal insertRSS:addRSS withArticles:articles withContext:pmoc
+                       success:^ {
                            [self->rssArr addObject:addRSS];
                            [self.tableView reloadData];
                        }

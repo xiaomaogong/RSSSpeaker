@@ -117,16 +117,24 @@
     // Initialization code
 }
 
-
 - (IBAction)favorSong:(id)sender {
     [self changeFavorStatus];
-    [self->delegate cell:self didFavorOrNot:self.favorButton.tag];
+    [self->delegate cellDidChangeFavorStatus:self];
 }
 
 - (IBAction)playSong:(id)sender {
     [self setPlayStatus:YES];
     [self unsetRedDot];
-    [self->delegate cellDidPlaySong:self];
+    [self->delegate cellDidChangePlayStatus:self];
+}
+
+- (void)stopSong {
+    [self setPlayStatus:NO];
+    [self->delegate cellDidChangeStopStatus:self];
+}
+
+- (void)setStopStatus {
+    [self setPlayStatus:NO];
 }
 
 - (void)initImages {
@@ -166,11 +174,6 @@
     }
     
     return cell;
-}
-
-- (void)stopSong {
-    [self setPlayStatus:NO];
-    [self->delegate cellDidStopSong:self];
 }
 
 @end

@@ -76,7 +76,7 @@ static DYFeedUpdateController *sharedInstance;
                 for (MWFeedItem *item in items) {
                     [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
                 }
-                [rssDal insertArticlesWithFeedItems:articles withFeedUrlStr:rss.sourceUrl withContext:pmoc];
+                [rssDal insertArticlesWithFeedurl:articles withFeedUrlStr:rss.sourceUrl withContext:pmoc];
             }];
             
             DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel alloc] init];

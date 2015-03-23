@@ -12,14 +12,12 @@
 @class DYPlayer;
 
 @protocol DYPlayerDelegate <NSObject>
-
-- (void) player:(DYPlayer*)player willPlayNextContent:(NSString*)content;
-
-- (void) playerDidFinishedPlayContent:(DYPlayer *)player;
-
+@optional
+// 播放进度,播放完成为1.0
+- (void) player:(DYPlayer*)player didCompleteProgress:(double)progress;
 @end
 
-
+// 播放
 @interface DYPlayer : NSObject<AVSpeechSynthesizerDelegate>
 @property(nonatomic,retain) id<DYPlayerDelegate> Delegate;
 +(instancetype) initWithPlayerDelegate: (id<DYPlayerDelegate>) dyplayerDelegate;
@@ -27,7 +25,7 @@
 -(void) setCurrentData: (NSArray*) data;
 -(void) play;
 -(void) play:(int) index;
--(void) stop;
+-(void) pause;
 -(void) playNext;
 -(void) playPrevious;
 @end

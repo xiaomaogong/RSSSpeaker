@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface DYUtil : NSObject
-+(NSManagedObjectContext*)getPrivateManagedObjectContext;
++ (NSManagedObjectContext*)getPrivateManagedObjectContext;
+// 比较日期
+/*
+    return(NSInteger):  
+       -1：后者比前者大
+        0：相等
+        1:前者比后者大
+ */
++ (NSInteger)compareYMD:(NSDate*)former latter:(NSDate*)later;
 @end

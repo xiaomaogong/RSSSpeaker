@@ -18,10 +18,17 @@
 @interface ClearCircleView : UIView
 @end
 
+/// 文章状态delegate
 @protocol DYSongTableViewCellDelegate <NSObject>
-- (void) cell:(DYSongTableViewCell*)cell didFavorOrNot:(BOOL)bFavor;
-- (void) cellDidPlaySong:(DYSongTableViewCell *)cell;
-- (void) cellDidStopSong:(DYSongTableViewCell *)cell;
+@optional
+// 喜爱歌曲状态
+- (void) cellDidChangeFavorStatus:(DYSongTableViewCell*)cell;
+// 取消喜爱状态
+- (void) cellDidChangeUnfavorStatus:(DYSongTableViewCell *)cell;
+// 播放状态
+- (void) cellDidChangePlayStatus:(DYSongTableViewCell *)cell;
+// 停止状态
+- (void) cellDidChangeStopStatus:(DYSongTableViewCell *)cell;
 @end
 
 @interface DYSongTableViewCell : UITableViewCell
@@ -36,6 +43,8 @@
 - (IBAction)playSong:(id)sender;
 - (IBAction)favorSong:(id)sender;
 - (void)stopSong;
+
+- (void)setStopStatus;
 
 +(instancetype) initWithDYArticle: (DYArticle*) article delegate:(id<DYSongTableViewCellDelegate>) delegate tableView:(UITableView*)tableView;
 
