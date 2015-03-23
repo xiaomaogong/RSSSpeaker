@@ -72,30 +72,36 @@ typedef enum : NSUInteger {
         }
         currentPlayingIndex = index + 1;
         NSString* content = currentArticle[index];
-        //if(notifier != nil)
-            //[notifier player:self willPlayNextContent:content];
+        if(notifier != nil)
+            [notifier player:self didCompleteProgress:((float)currentPlayingIndex)/currentArticle.count];
         [speeker play:content];
         state = Playing;
     } else if (currentArticle != nil && index == [currentArticle count]){
         state = Finished;
-        //if(notifier != nil)
-            //[notifier playerDidFinishedPlayContent:self];
+        [notifier player:self didCompleteProgress:currentPlayingIndex/currentArticle.count];
     }
 }
 
 -(void) pause {
     if(currentArticle != nil) {
-        [speeker stop];
+        [speeker pause];
         state = Paused;
     }
 }
 
--(void) playNext {
-    [self play:currentPlayingIndex +1];
+-(void) resume{
+    if(currentArticle != nil) {
+        [speeker resume];
+        state = Playing;
+    }
+
 }
 
--(void) playPrevious {
-    [self play:currentPlayingIndex -2];
+-(void) stop{
+    if(currentArticle != nil) {
+        [speeker stop];
+        state = Finished;
+    }
 }
 
 #pragma AVSpeechUtterance Delegate methods

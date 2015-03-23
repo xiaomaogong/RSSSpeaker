@@ -26,8 +26,8 @@
 -(void) play;
 -(void) play:(int) index;
 -(void) pause;
--(void) playNext;
--(void) playPrevious;
+-(void) resume;
+-(void) stop;
 @end
 
 

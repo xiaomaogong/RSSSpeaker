@@ -60,6 +60,10 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         [self clearHistoryArticles];
         self.songs = [NSMutableArray arrayWithArray:[self fetchAllArticles]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+
     });
 }
 
@@ -94,11 +98,9 @@
     if(bt.imageView.tag == STOP_FLAG)
     {
         bt.imageView.tag = PLAY_FLAG;
-        
-        //[bt.imageView setImage: [UIImage imageNamed:@"stop.png"]];
         [bt setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
         [self.view reloadInputViews];
-        [player play];
+        [player resume];
     }else
     {
         bt.imageView.tag = STOP_FLAG;
@@ -109,16 +111,26 @@
 }
 
 - (IBAction)playPreviousSong:(id)sender {
-    if (self.slider.value >= 1) {
-        DYArticle* a = self.songs[(int)(self.slider.value -1)];
-        [self playArticle:a];
+//    if (playingCell != nil) {
+//        [playingCell stopSong];
+//    }
+    
+    NSInteger playingIndex = playingCell ? [self getIndexOfArticleInSongs:[self getArticalByIdentify:playingCell.identifier]]: 0;
+    if(playingIndex >= 1)
+    {
+        NSInteger previousRow = playingIndex - 1;
+        DYSongTableViewCell* willPlaingCell = (DYSongTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:previousRow inSection:0]];
+        [willPlaingCell playSong:nil];
     }
 }
 
 - (IBAction)playNextSong:(id)sender {
-    if (self.slider.value < self.songs.count - 1) {
-        DYArticle* a = self.songs[(int)(self.slider.value + 1)];
-        [self playArticle:a];
+    NSInteger playingIndex = playingCell ? [self getIndexOfArticleInSongs:[self getArticalByIdentify:playingCell.identifier]]: 0;
+    if(playingIndex < self.songs.count - 1)
+    {
+        NSInteger nextRow = playingIndex + 1;
+        DYSongTableViewCell* willPlaingCell = (DYSongTableViewCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0]];
+        [willPlaingCell playSong:nil];
     }
 }
 
@@ -126,7 +138,7 @@
 
 // 喜爱歌曲状态
 - (void) cellDidChangeFavorStatus:(DYSongTableViewCell*)cell {
-    DYArticle * aArticle = [self getArticalByIdentify:playingCell.identifier];
+    DYArticle * aArticle = [self getArticalByIdentify:cell.identifier];
     if(aArticle != nil) {
         DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
         [rssDal likeArticle:aArticle withContext:[DYUtil getPrivateManagedObjectContext]];
@@ -162,7 +174,9 @@
 // 停止状态
 - (void) cellDidChangeStopStatus:(DYSongTableViewCell *)cell {
     playingCell = nil;
-
+    [player stop];
+    //Sleep for a while
+    [NSThread sleepForTimeInterval:0.5];
 }
 
 #pragma DYPlayerDelegate
@@ -171,13 +185,17 @@
     self.slider.value = progress;
     if (progress >= 1.0) {
         [playingCell setStopStatus];
+        [self playNextSong:nil];
     }
-    NSLog(@"Play progress:%f", progress);
+//    NSLog(@"Play progress:%f", progress);
 }
 
 #pragma mark Private Methods
 
 - (void)playArticle:(DYArticle *)a {
+    
+    NSLog(@"Start to play article %@",a.title);
+    
     self.playButton.imageView.tag = PLAY_FLAG;
     [self.playButton setBackgroundImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
     
@@ -202,6 +220,16 @@
         result = self.songs[index];
     }
     return  result;
+}
+
+-(NSInteger)getIndexOfArticleInSongs:(DYArticle*)article{
+    for (int i = 0; i < self.songs.count; i++) {
+        if (self.songs[i] == article) {
+            return i;
+        }
+    }
+    
+    return -1;
 }
 
 - (void)clearHistoryArticles {

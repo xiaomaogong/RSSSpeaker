@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Pods/MWFeedParser/Classes/NSDate+InternetDateTime.m"
-            timestampString = "448808305.259211"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "RSS&#x8bed;&#x97f3;&#x52a9;&#x624b;/DYSettingViewController.m"
+            timestampString = "448814321.875226"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "+dateFromRFC822String:"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "-onStepperValueChanged:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

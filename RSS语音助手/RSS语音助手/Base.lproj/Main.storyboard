@@ -474,16 +474,25 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wMd-VE-uIs">
-                                                    <rect key="frame" x="297" y="7" width="94" height="29"/>
+                                                <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="wMd-VE-uIs">
+                                                    <rect key="frame" x="498" y="7" width="94" height="29"/>
+                                                    <connections>
+                                                        <action selector="onStepperValueChanged:" destination="fRj-Zp-8bU" eventType="valueChanged" id="1zo-Ml-skT"/>
+                                                    </connections>
                                                 </stepper>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phm-Oh-SSE">
-                                                    <rect key="frame" x="198" y="11" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phm-Oh-SSE">
+                                                    <rect key="frame" x="432" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="phm-Oh-SSE" firstAttribute="top" secondItem="yvV-Mf-dtY" secondAttribute="topMargin" constant="3" id="Msi-VC-mlN"/>
+                                                <constraint firstItem="wMd-VE-uIs" firstAttribute="top" secondItem="yvV-Mf-dtY" secondAttribute="topMargin" constant="-1" id="V9F-2i-45v"/>
+                                                <constraint firstItem="wMd-VE-uIs" firstAttribute="leading" secondItem="phm-Oh-SSE" secondAttribute="trailing" constant="24" id="YcI-B3-f05"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="wMd-VE-uIs" secondAttribute="trailing" id="kNx-Ve-ZZY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -501,10 +510,20 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Dmw-Tl-Ri1">
-                                                    <rect key="frame" x="177" y="7" width="118" height="31"/>
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="1.5" maxValue="3.5" translatesAutoresizingMaskIntoConstraints="NO" id="Dmw-Tl-Ri1">
+                                                    <rect key="frame" x="463" y="5" width="118" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="114" id="N3k-HH-mIE"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="onSpeakRateChanged:" destination="fRj-Zp-8bU" eventType="valueChanged" id="I9M-5b-Xbg"/>
+                                                    </connections>
                                                 </slider>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Dmw-Tl-Ri1" firstAttribute="trailing" secondItem="cly-MA-9fT" secondAttribute="trailingMargin" constant="-13" id="G8J-1Y-SOg"/>
+                                                <constraint firstItem="Dmw-Tl-Ri1" firstAttribute="top" secondItem="cly-MA-9fT" secondAttribute="topMargin" constant="-3" id="zdV-cn-hDr"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -520,6 +539,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="sidebarButton" destination="dKm-iG-Itv" id="1ST-Xi-Aqo"/>
+                        <outlet property="speakRateSlider" destination="Dmw-Tl-Ri1" id="mLA-QG-jy6"/>
+                        <outlet property="updateIntervalLabel" destination="phm-Oh-SSE" id="zlW-P6-KUR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4FA-zO-U4V" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -530,21 +551,81 @@
         <scene sceneID="C4o-7T-8Yi">
             <objects>
                 <tableViewController id="t8F-3z-dCP" customClass="DYAboutViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yom-5p-H4D">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="3uz-mO-5Te">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2jh-CL-H2e">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2jh-CL-H2e" id="382-XJ-Fci">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <sections>
+                            <tableViewSection headerTitle="项目动态" id="STd-jS-UcM" userLabel="项目动态">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="Njh-9f-bnq" userLabel="GitHub">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Njh-9f-bnq" id="7br-4E-nWa">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="https://github.com/iosnerds/RSSSpeaker" lineBreakMode="wordWrap" baselineAdjustment="none" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vrk-1P-bpu">
+                                                    <rect key="frame" x="96" y="3" width="491" height="57"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="eAh-Lc-tRq">
+                                                    <rect key="frame" x="16" y="8" width="48" height="43.5"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="关于我们" id="BaH-vD-gkN" userLabel="关于我们">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="uhk-Rs-iwn">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uhk-Rs-iwn" id="ZrL-7b-9O8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="iosnerds https://github.com/iosnerds" translatesAutoresizingMaskIntoConstraints="NO" id="sb7-FY-6Nv">
+                                                    <rect key="frame" x="86" y="-7" width="517" height="66.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="github" translatesAutoresizingMaskIntoConstraints="NO" id="p8X-sy-fwZ">
+                                                    <rect key="frame" x="14" y="8" width="47" height="43.5"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="DHh-4J-aFS">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHh-4J-aFS" id="jGd-k9-dXc">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="email" translatesAutoresizingMaskIntoConstraints="NO" id="5NQ-Dh-8V2">
+                                                    <rect key="frame" x="14" y="0.0" width="46" height="43.5"/>
+                                                </imageView>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aEs-XI-bve">
+                                                    <rect key="frame" x="86" y="0.0" width="600" height="66.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="iosnerds@qq.com">
+                                                            <attributes>
+                                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="justified" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
                         <connections>
-                            <outlet property="dataSource" destination="t8F-3z-dCP" id="tEe-Z9-QzO"/>
-                            <outlet property="delegate" destination="t8F-3z-dCP" id="OaW-0b-xsh"/>
+                            <outlet property="dataSource" destination="t8F-3z-dCP" id="bPp-s8-Boi"/>
+                            <outlet property="delegate" destination="t8F-3z-dCP" id="egM-Wy-3N4"/>
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="8lH-p6-nzf">
@@ -563,6 +644,8 @@
         <image name="Music-Equalizer-32" width="32" height="32"/>
         <image name="add" width="32" height="32"/>
         <image name="comments.png" width="32" height="32"/>
+        <image name="email" width="225" height="225"/>
+        <image name="github" width="120" height="120"/>
         <image name="menu" width="28" height="20"/>
         <image name="next" width="32" height="32"/>
         <image name="play" width="32" height="32"/>

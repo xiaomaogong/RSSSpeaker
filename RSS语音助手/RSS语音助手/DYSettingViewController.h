@@ -10,4 +10,10 @@
 
 @interface DYSettingViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UILabel *updateIntervalLabel;
+@property (weak, nonatomic) IBOutlet UISlider *speakRateSlider;
+
+- (IBAction)onStepperValueChanged:(id)sender;
+- (IBAction)onSpeakRateChanged:(id)sender;
+
 @end

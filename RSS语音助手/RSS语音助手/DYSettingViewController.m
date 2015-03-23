@@ -8,6 +8,7 @@
 
 #import "DYSettingViewController.h"
 #import "SWRevealViewController.h"
+#import "DYPreferences.h"
 
 @interface DYSettingViewController ()
 
@@ -18,7 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-  
+    self.updateIntervalLabel.text = [NSString stringWithFormat:@"%02ld", (NSInteger)([DYPreferences sharedInstance].updateInterval)/60];
+    self.speakRateSlider.value = [DYPreferences sharedInstance].voiceRate;
     [self setupSWSegues];
 }
 
@@ -39,6 +41,16 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+}
+
+- (IBAction)onStepperValueChanged:(id)sender {
+    UIStepper *stepper = (UIStepper*)sender;
+    [DYPreferences sharedInstance].updateInterval = stepper.value*60;
+    self.updateIntervalLabel.text = [NSString stringWithFormat:@"%02ld", (NSInteger)([DYPreferences sharedInstance].updateInterval)/60];
+}
+
+- (IBAction)onSpeakRateChanged:(id)sender {
+    [DYPreferences sharedInstance].voiceRate = self.speakRateSlider.value;
 }
 
 @end

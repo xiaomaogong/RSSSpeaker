@@ -28,11 +28,12 @@
 }
 
 -(void)resume{
-    
+    [syther continueSpeaking];
 }
 
 -(void)pause{
-    
+    [syther pauseSpeakingAtBoundary:AVSpeechBoundaryImmediate];
+
 }
 
 - (instancetype)init
