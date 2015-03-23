@@ -137,15 +137,14 @@
                 addRSS.sourceUrl = url;
                 addRSS.lastUpdateTime = [NSDate date];
                 
-                
                 DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
                 rssDal.delegate = (id)self;
                 NSMutableSet *articles = [[NSMutableSet alloc] init];
                 for (MWFeedItem *item in items) {
-                    if (item.date) {
-                        <#statements#>
+                    if ([DYUtil compareYMD:item.date latter:[DYUtil convertYMD:[NSDate date]]] < 0) {
+                        // 过滤掉小于今天的article
+                        [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
                     }
-                    [articles addObject:[DYConverter convertFromFeedItem:item context:pmoc]];
                 }
                 [rssDal insertRSS:addRSS withArticles:articles withContext:pmoc
                        success:^ {

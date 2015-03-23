@@ -17,20 +17,25 @@
     return [APP_DELEGATE managedObjectContext];
 }
 
-+ (NSInteger)compareYMD:(NSDate*)former latter:(NSDate*)later {
++ (NSDate*)convertYMD:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd-MM-yyyy"];
-    NSString *oneDayStr = [dateFormatter stringFromDate:former];
-    NSString *anotherDayStr = [dateFormatter stringFromDate:later];
-    NSDate *dateA = [dateFormatter dateFromString:oneDayStr];
-    NSDate *dateB = [dateFormatter dateFromString:anotherDayStr];
+    NSString *oneDayStr = [dateFormatter stringFromDate:date];
+    NSDate *result = [dateFormatter dateFromString:oneDayStr];
+    return result;
+}
+
++ (NSInteger)compareYMD:(NSDate*)former latter:(NSDate*)later {
+    NSDate *dateA = [DYUtil convertYMD:former];
+    NSDate *dateB = [DYUtil convertYMD:later];
     NSComparisonResult result = [dateA compare:dateB];
     if (result == NSOrderedDescending) {
         return 1;
     }
-    else if (result == NSOrderedAscending){
+    else if (result == NSOrderedAscending) {
         return -1;
-    } else {
+    }
+    else {
         return 0;
     }
 }

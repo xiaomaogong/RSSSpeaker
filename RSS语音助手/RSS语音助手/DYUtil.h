@@ -10,6 +10,9 @@
 
 @interface DYUtil : NSObject
 + (NSManagedObjectContext*)getPrivateManagedObjectContext;
+
++ (NSDate*)convertYMD:(NSDate*)date;
+
 // 比较日期
 /*
     return(NSInteger):  
