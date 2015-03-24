@@ -8,6 +8,7 @@
 
 #import "DYSpeeker.h"
 #import <AVFoundation/AVFoundation.h>
+#import "DYPreferences.h"
 
 @implementation DYSpeeker
 {
@@ -19,7 +20,7 @@
     
     AVSpeechUtterance *utterance = [AVSpeechUtterance speechUtteranceWithString:content];
     utterance.voice = voice;
-    utterance.rate = 0.3;
+    utterance.rate = [DYPreferences sharedInstance].voiceRate;
     [syther speakUtterance:utterance];
 }
 
