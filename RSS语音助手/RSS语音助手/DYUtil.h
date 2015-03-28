@@ -21,4 +21,9 @@
         1:前者比后者大
  */
 + (NSInteger)compareYMD:(NSDate*)former latter:(NSDate*)later;
+
++(UIViewController*)getCacheUIViewControllerByKey:(NSString*)key;
+
++(void)setCacheUIViewControllers:(NSString*)key withController:(UIViewController*) controller;
+
 @end

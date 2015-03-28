@@ -8,6 +8,9 @@
 
 #import "DYMyFavorViewController.h"
 #import "SWRevealViewController.h"
+#import "DYBlurBackground.h"
+#import "DYRSSDAL.h"
+#import "DYArticle.h"
 
 @interface DYMyFavorViewController ()
 
@@ -15,16 +18,34 @@
 
 @implementation DYMyFavorViewController
 
+{
+    NSMutableArray* favorArticleArr;
+    DYRSSDAL* dal;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    UIImageView *backgroundImage = [DYBlurBackground DYBackgroundView];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self setupSWSegues];
+    
+    dal = [DYRSSDAL new];
+    [self loadFavorArticles];
 }
+
+-(void)loadFavorArticles{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        favorArticleArr = [NSMutableArray arrayWithArray:[dal fetchAllFavorArticle]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
+    });
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -34,15 +55,13 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return favorArticleArr.count;
 }
 
 #pragma SetUp SW Segues
@@ -59,15 +78,13 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myFavorCell" forIndexPath:indexPath];
+    cell.textLabel.text = ((DYArticle*)favorArticleArr[indexPath.row]).title;
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.

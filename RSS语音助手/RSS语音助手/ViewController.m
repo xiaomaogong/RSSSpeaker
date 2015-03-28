@@ -16,6 +16,7 @@
 #import "DYRSSDAL.h"
 #import "DYUtil.h"
 #import "DYGetFetchedRecordsModel.h"
+#import "DYBlurBackground.h"
 
 #define INPUT_WEBPATH_SAVE      0
 #define INPUT_WEBPATh_CANCEL    1
@@ -36,6 +37,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIImageView *backgroundImage = [DYBlurBackground DYBackgroundView];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
+    
     // Change button color
     _sidebarButton.tintColor = [UIColor colorWithWhite:0.1f alpha:0.9f];
     
@@ -53,6 +58,9 @@
     self->playingCell = nil;
     dal = [DYRSSDAL new];
     [self loadSongs];
+    
+    //Cache current view controller
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"Notification_cacheViewControl" object:self userInfo:nil];
 }
 
 - (void)loadSongs
@@ -166,8 +174,18 @@
         if (a.isReaded == 0) {
             DYRSSDAL *rssDal = [[DYRSSDAL alloc] init];
             [rssDal markAsRead:a withContext:[DYUtil getPrivateManagedObjectContext]];
+          
         }
         [self playArticle:a];
+        
+//        NSInteger index = [self getIndexOfArticleInSongs:a];
+//        
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+//        
+//        NSArray *indexPaths = [[NSArray alloc] initWithObjects:indexPath, nil];
+//        
+//        [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+//        [self.tableView reloadData];
     }
 }
 
@@ -250,6 +268,7 @@
     DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel
                                            alloc] init];
     getModel.entityName = @"DYArticle";
+    getModel.sortName = @"title";
     NSArray* fetchedResults = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:[DYUtil getPrivateManagedObjectContext]];
     return fetchedResults;
 }

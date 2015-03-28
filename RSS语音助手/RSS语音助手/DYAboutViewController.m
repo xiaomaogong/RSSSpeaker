@@ -8,6 +8,7 @@
 
 #import "DYAboutViewController.h"
 #import "SWRevealViewController.h"
+#import "DYBlurBackground.h"
 
 @interface DYAboutViewController ()
 
@@ -18,7 +19,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    UIImageView *view = [DYBlurBackground DYBackgroundView];
+    [self.view addSubview:view];
+    [self.view sendSubviewToBack:view];
     [self setupSWSegues];
 }
 

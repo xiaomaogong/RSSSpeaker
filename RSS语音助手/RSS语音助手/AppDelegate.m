@@ -140,7 +140,7 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:getModel.entityName inManagedObjectContext:self.managedObjectContext];
     [fetchRequest setEntity:entity];
     if (getModel.sortName) {
-        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:getModel.sortName ascending:NO];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]initWithKey:getModel.sortName ascending:YES];
         NSArray *sortDescriptors = [[NSArray alloc]initWithObjects:sortDescriptor, nil];
         [fetchRequest setSortDescriptors:sortDescriptors];
     }

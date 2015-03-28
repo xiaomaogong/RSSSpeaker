@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DYSettingViewController : UITableViewController
+@interface DYSettingViewController : UITableViewController<UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UILabel *updateIntervalLabel;
 @property (weak, nonatomic) IBOutlet UISlider *speakRateSlider;

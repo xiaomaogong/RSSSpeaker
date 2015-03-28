@@ -16,6 +16,8 @@
 #import "DYRSSDAL.h"
 #import "DYArticle.h"
 #import "DYConverter.h"
+#import "DYBlurBackground.h"
+#import "DYRSSDAL.h"
 
 @interface DYMyRSSViewController ()
 
@@ -25,21 +27,41 @@
 
 {
     NSMutableArray* rssArr;
+    DYRSSDAL* dal;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    dal = [DYRSSDAL new];
+    
+    UIImageView *backgroundImage = [DYBlurBackground DYBackgroundView];
+    [self.view addSubview:backgroundImage];
+    [self.view sendSubviewToBack:backgroundImage];
     
     [self setupSWSegues];
     
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     rssArr = [NSMutableArray new];
+    
+    [self loadRSS];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)loadRSS{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        rssArr = [NSMutableArray arrayWithArray:[dal fetchAllRSS]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+        
+    });
+
 }
 
 #pragma mark - Table view data source
@@ -80,7 +102,9 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [dal removeRSS:((DYRSS*)rssArr[indexPath.row]).sourceUrl withContext:[DYUtil getPrivateManagedObjectContext]];
+        [self loadRSS];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   

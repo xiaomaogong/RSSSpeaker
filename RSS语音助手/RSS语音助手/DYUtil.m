@@ -11,6 +11,10 @@
 #import "NSManagedObjectContext+PrivateContext.h"
 
 @implementation DYUtil
+{
+
+}
+ static NSMutableDictionary * viewControllerCache;
 
 + (NSManagedObjectContext*)getPrivateManagedObjectContext {
     //return [[APP_DELEGATE managedObjectContext] generatePrivateContext];
@@ -38,6 +42,20 @@
     else {
         return 0;
     }
+}
+
+
++(UIViewController*)getCacheUIViewControllerByKey:(NSString*)key{
+    if(viewControllerCache == nil)
+        viewControllerCache = [NSMutableDictionary dictionary];
+    return [viewControllerCache objectForKey:key];
+}
+
++(void)setCacheUIViewControllers:(NSString*)key withController:(UIViewController*) controller{
+    if(viewControllerCache == nil)
+        viewControllerCache = [NSMutableDictionary dictionary];
+
+    [viewControllerCache setObject:controller forKey:key];
 }
 
 @end

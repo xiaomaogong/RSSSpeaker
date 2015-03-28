@@ -73,7 +73,7 @@ typedef enum : NSUInteger {
         currentPlayingIndex = index + 1;
         NSString* content = currentArticle[index];
         if(notifier != nil)
-            [notifier player:self didCompleteProgress:((float)currentPlayingIndex)/currentArticle.count];
+            [notifier player:self didCompleteProgress:(((float)currentPlayingIndex)/currentArticle.count) - 0.01];
         [speeker play:content];
         state = Playing;
     } else if (currentArticle != nil && index == [currentArticle count]){

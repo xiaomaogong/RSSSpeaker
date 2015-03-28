@@ -15,6 +15,7 @@
 		508E25751ABD5D19009051FB /* DYMyFavorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25741ABD5D19009051FB /* DYMyFavorViewController.m */; };
 		508E257E1ABDBC8E009051FB /* DYMyRSSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E257D1ABDBC8E009051FB /* DYMyRSSTableViewCell.m */; };
 		508E25821ABE8F98009051FB /* DYUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 508E25811ABE8F98009051FB /* DYUtil.m */; };
+		50EE327E1AC1C833009641A4 /* playing.gif in Resources */ = {isa = PBXBuildFile; fileRef = 50EE327D1AC1C833009641A4 /* playing.gif */; };
 		BE03834499D04B026AF4E17B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FBD34B965AAD52B616EE900 /* libPods.a */; };
 		DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF35A7F71ABB261D008BF6F0 /* Images.xcassets */; };
 		DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A7FF1ABB272F008BF6F0 /* DYSongTableViewCell.m */; };
@@ -23,6 +24,8 @@
 		DF35A80B1ABB2847008BF6F0 /* DYSpeeker.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A8091ABB2847008BF6F0 /* DYSpeeker.m */; };
 		DF35A80E1ABB2879008BF6F0 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */; };
 		DF590AD31ABB2AF6006E6E35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DF590AD11ABB2AF6006E6E35 /* Main.storyboard */; };
+		DF7FFC9B1AC106FD005FF994 /* DYBlurBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7FFC9A1AC106FD005FF994 /* DYBlurBackground.m */; };
+		DF7FFC9E1AC1077B005FF994 /* QBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = DF7FFC9D1AC1077B005FF994 /* QBlurView.m */; };
 		DF8644AD1ABDB48D004A8BB7 /* DYRSSDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644AC1ABDB48D004A8BB7 /* DYRSSDAL.m */; };
 		DF8644B81ABDB4D3004A8BB7 /* DYFeedParserWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644AF1ABDB4D3004A8BB7 /* DYFeedParserWrapper.m */; };
 		DF8644B91ABDB4D3004A8BB7 /* DYFeedUpdateController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF8644B11ABDB4D3004A8BB7 /* DYFeedUpdateController.m */; };
@@ -68,6 +71,7 @@
 		508E257D1ABDBC8E009051FB /* DYMyRSSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYMyRSSTableViewCell.m; sourceTree = "<group>"; };
 		508E25801ABE8F98009051FB /* DYUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYUtil.h; sourceTree = "<group>"; };
 		508E25811ABE8F98009051FB /* DYUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYUtil.m; sourceTree = "<group>"; };
+		50EE327D1AC1C833009641A4 /* playing.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = playing.gif; sourceTree = "<group>"; };
 		53B7AD06549F05168EF2AE10 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		DF35A7F71ABB261D008BF6F0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		DF35A7FE1ABB272F008BF6F0 /* DYSongTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSongTableViewCell.h; sourceTree = "<group>"; };
@@ -81,6 +85,10 @@
 		DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
 		DF590AD21ABB2AF6006E6E35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DF7FFC991AC106FD005FF994 /* DYBlurBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYBlurBackground.h; sourceTree = "<group>"; };
+		DF7FFC9A1AC106FD005FF994 /* DYBlurBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYBlurBackground.m; sourceTree = "<group>"; };
+		DF7FFC9C1AC1077B005FF994 /* QBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QBlurView.h; sourceTree = "<group>"; };
+		DF7FFC9D1AC1077B005FF994 /* QBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QBlurView.m; sourceTree = "<group>"; };
 		DF8644AB1ABDB48D004A8BB7 /* DYRSSDAL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRSSDAL.h; sourceTree = "<group>"; };
 		DF8644AC1ABDB48D004A8BB7 /* DYRSSDAL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRSSDAL.m; sourceTree = "<group>"; };
 		DF8644AE1ABDB4D3004A8BB7 /* DYFeedParserWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYFeedParserWrapper.h; sourceTree = "<group>"; };
@@ -155,8 +163,9 @@
 			children = (
 				5021AC191ABC78BC00877910 /* SWRevealViewController.h */,
 				5021AC1A1ABC78BC00877910 /* SWRevealViewController.m */,
-				DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */,
+				DF7FFC9A1AC106FD005FF994 /* DYBlurBackground.m */,
 				DF35A80D1ABB2879008BF6F0 /* SidebarViewController.m */,
+				DF35A80C1ABB2879008BF6F0 /* SidebarViewController.h */,
 				DF35A8011ABB273A008BF6F0 /* DYSettingViewController.h */,
 				DF35A8021ABB273A008BF6F0 /* DYSettingViewController.m */,
 				DF979BC81ABB258500DAD4AE /* ViewController.h */,
@@ -174,6 +183,9 @@
 		DF35A7FD1ABB2715008BF6F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				DF7FFC9C1AC1077B005FF994 /* QBlurView.h */,
+				DF7FFC9D1AC1077B005FF994 /* QBlurView.m */,
+				DF7FFC991AC106FD005FF994 /* DYBlurBackground.h */,
 				508E257C1ABDBC8E009051FB /* DYMyRSSTableViewCell.h */,
 				508E257D1ABDBC8E009051FB /* DYMyRSSTableViewCell.m */,
 				DF35A7FE1ABB272F008BF6F0 /* DYSongTableViewCell.h */,
@@ -265,6 +277,7 @@
 				DF979BC21ABB258500DAD4AE /* AppDelegate.h */,
 				DF979BC31ABB258500DAD4AE /* AppDelegate.m */,
 				DF590AD11ABB2AF6006E6E35 /* Main.storyboard */,
+				50EE327D1AC1C833009641A4 /* playing.gif */,
 				DF35A7F71ABB261D008BF6F0 /* Images.xcassets */,
 				DF979BD01ABB258500DAD4AE /* LaunchScreen.xib */,
 				DF979BBE1ABB258500DAD4AE /* Supporting Files */,
@@ -400,6 +413,7 @@
 				DF35A7F81ABB261D008BF6F0 /* Images.xcassets in Resources */,
 				DF979BD21ABB258500DAD4AE /* LaunchScreen.xib in Resources */,
 				DF590AD31ABB2AF6006E6E35 /* Main.storyboard in Resources */,
+				50EE327E1AC1C833009641A4 /* playing.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,10 +465,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF8C95831ABEE1DC0023BDFE /* DYConverter.m in Sources */,
+				DF7FFC9E1AC1077B005FF994 /* QBlurView.m in Sources */,
 				DF979BC41ABB258500DAD4AE /* AppDelegate.m in Sources */,
 				DF35A8001ABB272F008BF6F0 /* DYSongTableViewCell.m in Sources */,
 				5021AC121ABC6B4000877910 /* DYArticle.m in Sources */,
 				5021AC151ABC6B4100877910 /* DYRSS.m in Sources */,
+				DF7FFC9B1AC106FD005FF994 /* DYBlurBackground.m in Sources */,
 				DF8644B81ABDB4D3004A8BB7 /* DYFeedParserWrapper.m in Sources */,
 				DF979BC11ABB258500DAD4AE /* main.m in Sources */,
 				5021AC1E1ABC963B00877910 /* DYAboutViewController.m in Sources */,

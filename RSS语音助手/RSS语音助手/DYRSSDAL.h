@@ -35,4 +35,11 @@
 // 删除rss
 - (void)removeRSS:(NSString *)feedUrl withContext:(NSManagedObjectContext *)context;
 
+//Get all RSS
+- (NSArray*)fetchAllRSS;
+
+//Get all favor article
+- (NSArray*)fetchAllFavorArticle;
+
+
 @end

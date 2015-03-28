@@ -109,14 +109,30 @@
     
     if (fetchedRSSRecorders && [fetchedRSSRecorders count]) {
         for (DYRSS *aRSS in fetchedRSSRecorders) {
-            for (DYArticle *aArticle in fetchedRSSRecorders) {
-                [aRSS removeArticlesObject:aArticle];
-            }
+            [context deleteObject:aRSS];
         }
     }
     NSError *error;
     [context save:&error];
 }
+
+- (NSArray*)fetchAllRSS {
+    DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel
+                                           alloc] init];
+    getModel.entityName = @"DYRSS";
+    NSArray* fetchedResults = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:[DYUtil getPrivateManagedObjectContext]];
+    return fetchedResults;
+}
+
+- (NSArray*)fetchAllFavorArticle {
+    DYGetFetchedRecordsModel *getModel = [[DYGetFetchedRecordsModel
+                                           alloc] init];
+    getModel.entityName = @"DYArticle";
+    getModel.predicate = [NSPredicate predicateWithFormat:@"isFavor=%@", @1];
+    NSArray* fetchedResults = [APP_DELEGATE fetchRecordsWithPrivateContext:getModel privateContext:[DYUtil getPrivateManagedObjectContext]];
+    return fetchedResults;
+}
+
 
 #pragma mark Private Methods
 

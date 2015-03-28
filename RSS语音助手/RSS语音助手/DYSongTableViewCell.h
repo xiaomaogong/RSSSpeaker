@@ -36,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *songTitle;
 @property (weak, nonatomic) IBOutlet UIImageView *songPlayIcon;
 @property (weak, nonatomic) IBOutlet UIButton *favorButton;
+@property (weak, nonatomic) IBOutlet UIButton *titleButton;
 @property (nonatomic) NSString* identifier;
 @property (nonatomic) BOOL isReaded;
 @property (retain, nonatomic) UIImageView *likeImageView, *unlikeImageView;

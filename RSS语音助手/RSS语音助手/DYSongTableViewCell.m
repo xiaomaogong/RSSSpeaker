@@ -8,6 +8,7 @@
 
 #import "DYSongTableViewCell.h"
 #import "DYArticle.h"
+#import <UIKit/UIKit.h>
 
 @interface RedCircleView() {
 }
@@ -16,12 +17,14 @@
 @implementation RedCircleView
     
 - (void)drawRect:(CGRect)rect {
+    /*
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(contextRef, 5.0);
     CGContextSetRGBFillColor(contextRef, 255.0, 0.0, 0.0, 1.0);
     CGContextSetRGBStrokeColor(contextRef, 255.0, 255.0, 255.0, 1.0);
     CGContextFillEllipseInRect(contextRef, rect);
     CGContextStrokeEllipseInRect(contextRef, rect);
+     */
 }
 
 @end
@@ -34,12 +37,14 @@
 @implementation ClearCircleView
 
 - (void)drawRect:(CGRect)rect {
+    /*
     CGContextRef contextRef = UIGraphicsGetCurrentContext();
     CGContextSetLineWidth(contextRef, 5.0);// Set the border width
     CGContextSetRGBFillColor(contextRef, 255.0, 255.0, 255.0, 1.0);
     CGContextSetRGBStrokeColor(contextRef, 255.0, 255.0, 255.0, 1.0);
     CGContextFillEllipseInRect(contextRef, rect);
     CGContextStrokeEllipseInRect(contextRef, rect);
+     */
 }
 
 @end
@@ -67,16 +72,21 @@
 }
 
 - (void)setRedDot {
+    /*
     CGRect positionFrame = CGRectMake(10,10,10,10);
     RedCircleView * circleView = [[RedCircleView alloc] initWithFrame:positionFrame];
     [self.contentView addSubview:circleView];
+     */
     self.isReaded = NO;
 }
 
 - (void)unsetRedDot {
+    /*
     CGRect positionFrame = CGRectMake(10,10,10,10);
     ClearCircleView * circleView = [[ClearCircleView alloc] initWithFrame:positionFrame];
     [self.contentView addSubview:circleView];
+     */
+    [self.titleButton.titleLabel setTextColor:[UIColor grayColor]];
     self.isReaded = YES;
 }
 
@@ -101,7 +111,8 @@
     if ([self.favorButton.subviews count] == 0) {
         goingImageView = nil;
     } else {
-        [goingImageView removeFromSuperview];
+//        [goingImageView removeFromSuperview];
+        [[self.favorButton subviews] makeObjectsPerformSelector: @selector(removeFromSuperview)];
     }
     
     self.favorButton.frame = comingImageView.frame;
@@ -126,7 +137,7 @@
     [self setPlayStatus:YES];
     [self unsetRedDot];
     [self->delegate cellDidChangePlayStatus:self];
-}
+}    
 
 - (void)stopSong {
     [self setPlayStatus:NO];
@@ -141,7 +152,7 @@
     UIImageView *image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"like_heart.png"]];
     [image setContentStretch:CGRectMake(0.5f, 0.5f, 0.f, 0.f)];
     CGRect frame = image.frame;
-    frame.size.width -= 30;
+    frame.size.width -= 20;
     frame.size.height -= 20;
     image.frame = frame;
     self.likeImageView = image;
@@ -149,7 +160,7 @@
     image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"unlike_heart.png"]];
     [image setContentStretch:CGRectMake(0.5f, 0.5f, 0.f, 0.f)];
     frame = image.frame;
-    frame.size.width -= 30;
+    frame.size.width -= 20;
     frame.size.height -= 20;
     image.frame = frame;
     self.unlikeImageView = image;
@@ -161,16 +172,17 @@
     if (!cell) {
         cell = [[DYSongTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    cell.titleButton.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     cell->delegate = delegate;
     [cell initImages];
     cell.identifier = article.url;
     [cell.songTitle setTitle:article.title forState:UIControlStateNormal];
     [cell setPlayStatus:NO];
     [cell setFavorStatus:[article.isFavor intValue] > 0 ? YES : NO];
-    if (NO == article.isReaded) {
-        [cell setRedDot];
-    } else {
+    if (article.isReaded != nil && article.isReaded) {
         [cell unsetRedDot];
+    } else {
+      [cell setRedDot];
     }
     
     return cell;
